@@ -33,7 +33,7 @@ Run your server:
 bun server.ts
 ```
 
-Visit <a href="http://localhost:3000" target="_blank" rel="noreferrer">http://localhost:3000</a> and you'll see:
+Visit `http://localhost:3000` in your browser and you'll see:
 ```json
 { "message": "Hello World!" }
 ```

@@ -1272,4 +1272,4 @@ This gRPC service example showcases:
 - [gRPC Server API](/api/servers/grpc) - gRPC server configuration
 - [Protocol Gateway](/api/protocol-gateway) - Multi-protocol integration
 - [Authentication Example](/examples/authentication) - Authentication patterns
-- [Microservices Guide](/guide/microservices) - Building microservices with gRPC
+- [gRPC Protocol Guide](/guide/protocols/grpc) - gRPC protocol configuration

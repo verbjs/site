@@ -1142,7 +1142,7 @@ RATE_LIMIT_MAX_REQUESTS=100
 
 All protected endpoints require a JWT token in the Authorization header:
 ```
-Authorization: Bearer <token>
+Authorization: Bearer `<token>`
 ```
 
 ## Endpoints
