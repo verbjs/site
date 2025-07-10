@@ -35,13 +35,13 @@ bun install jsonwebtoken bcryptjs zod
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 import { cors, json, staticFiles } from "verb/middleware";
 import { ChatServer } from "./src/ChatServer";
 import { authRouter } from "./src/routes/auth";
 import { chatRouter } from "./src/routes/chat";
 
-const app = createServer();
+const app = createServer(ServerProtocol.WEBSOCKET);
 
 // Initialize chat server
 const chatServer = new ChatServer();
@@ -1269,12 +1269,12 @@ export interface Room {
 
 ```typescript
 // src/routes/auth.ts
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 import { hash, compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
 import { Database } from "bun:sqlite";
 
-const authRouter = createServer();
+const authRouter = createServer(ServerProtocol.HTTP);
 const db = new Database("chat.db");
 
 // Register new user

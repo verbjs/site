@@ -25,8 +25,8 @@ Returns a unified server instance that implements the appropriate server interfa
 ```typescript
 import { createServer, ServerProtocol } from "verb";
 
-// Default HTTP server
-const app = createServer();
+// Default HTTP server (explicit)
+const app = createServer(ServerProtocol.HTTP);
 
 // Explicit HTTP server
 const httpApp = createServer(ServerProtocol.HTTP);
@@ -331,7 +331,7 @@ interface DevelopmentOptions {
 ### Example Configuration
 
 ```typescript
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.withOptions({
   port: 3000,
@@ -465,9 +465,9 @@ try {
 ### Basic HTTP Server
 
 ```typescript
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });

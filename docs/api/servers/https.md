@@ -348,7 +348,9 @@ httpsApp.listen(443);
 ### Combined HTTP/HTTPS Server
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 app.withOptions({
   // HTTP configuration

@@ -15,9 +15,9 @@ Create your server:
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -58,9 +58,9 @@ Let's create a simple HTTP server:
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Verb!" });
@@ -91,7 +91,7 @@ Verb supports multiple protocols. Specify the protocol when creating a server:
 import { createServer, ServerProtocol } from "verb";
 
 // HTTP Server (default)
-const httpServer = createServer();
+const httpServer = createServer(ServerProtocol.HTTP);
 // or explicitly
 const httpServer2 = createServer(ServerProtocol.HTTP);
 
@@ -110,7 +110,9 @@ const wsServer = createServer(ServerProtocol.WEBSOCKET);
 Verb supports standard HTTP methods:
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 // GET request
 app.get("/users", (req, res) => {
@@ -141,7 +143,9 @@ app.delete("/users/:id", (req, res) => {
 Add middleware to process requests:
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 // Global middleware
 app.use((req, res, next) => {
@@ -175,7 +179,9 @@ app.get("/protected",
 Handle errors gracefully:
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/error", (req, res) => {
   throw new Error("Something went wrong!");
@@ -196,7 +202,9 @@ app.use((error, req, res, next) => {
 Access request data and send responses:
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 app.post("/data", (req, res) => {
   // Request data
@@ -268,9 +276,9 @@ bun --hot server.ts
 Verb is built with TypeScript. Use types for better development experience:
 
 ```typescript
-import { createServer, Request, Response } from "verb";
+import { createServer, ServerProtocol, Request, Response } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/typed", (req: Request, res: Response) => {
   // Full type safety
@@ -282,7 +290,9 @@ app.get("/typed", (req: Request, res: Response) => {
 Use Bun's built-in environment variable support:
 
 ```typescript
-const app = createServer();
+import { createServer, ServerProtocol } from "verb";
+
+const app = createServer(ServerProtocol.HTTP);
 
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
@@ -297,10 +307,10 @@ app.listen(port, host);
 Build fullstack applications with HTML imports and automatic bundling:
 
 ```typescript
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 import homepage from "./index.html"; // HTML import
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.withRoutes({
   // Serve HTML with automatic bundling

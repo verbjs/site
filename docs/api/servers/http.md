@@ -22,10 +22,10 @@ console.log("HTTP server running on http://localhost:3000");
 ### Default Server (HTTP)
 
 ```typescript
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 
-// HTTP is the default protocol
-const app = createServer();
+// HTTP is the default protocol, but it's better to be explicit
+const app = createServer(ServerProtocol.HTTP);
 
 app.get("/health", (req, res) => {
   res.json({ status: "healthy", timestamp: new Date().toISOString() });

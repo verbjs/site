@@ -10,7 +10,7 @@ Create a new server instance with optional protocol specification.
 ```typescript
 import { createServer, ServerProtocol } from "verb";
 
-const app = createServer();                    // HTTP by default
+const app = createServer(ServerProtocol.HTTP);  // HTTP explicit
 const httpsApp = createServer(ServerProtocol.HTTPS);
 const wsApp = createServer(ServerProtocol.WEBSOCKET);
 ```
@@ -273,7 +273,7 @@ import {
   type ProtocolGateway 
 } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 // Fully typed handler
 app.get("/typed", (req: Request, res: Response) => {
@@ -288,7 +288,7 @@ Quick examples for common use cases:
 
 ```typescript
 // Basic HTTP server
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 app.get("/", (req, res) => res.json({ hello: "world" }));
 app.listen(3000);
 

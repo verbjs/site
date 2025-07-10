@@ -37,9 +37,9 @@ console.log("WebSocket server running on ws://localhost:3000");
 ### HTTP + WebSocket Server
 
 ```typescript
-import { createServer } from "verb";
+import { createServer, ServerProtocol } from "verb";
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 
 app.withOptions({
   port: 3000,

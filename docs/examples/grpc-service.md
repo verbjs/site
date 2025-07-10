@@ -930,7 +930,7 @@ export class ProductClient {
   private client: any;
   
   constructor(serverAddress = "localhost:50051", credentials?: grpc.ChannelCredentials) {
-    this.client = new productProto.ProductService(
+    this.client = productProto.ProductService(
       serverAddress,
       credentials || grpc.credentials.createInsecure()
     );
@@ -939,7 +939,7 @@ export class ProductClient {
   // Unary call example
   async getProduct(id: string, token?: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      const metadata = new grpc.Metadata();
+      const metadata = grpc.Metadata();
       if (token) {
         metadata.set("authorization", `Bearer ${token}`);
       }
@@ -957,7 +957,7 @@ export class ProductClient {
   // Unary call with authentication
   async createProduct(productData: any, token: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      const metadata = new grpc.Metadata();
+      const metadata = grpc.Metadata();
       metadata.set("authorization", `Bearer ${token}`);
       
       this.client.CreateProduct(productData, metadata, (error: any, response: any) => {
@@ -982,7 +982,7 @@ export class ProductClient {
   // Client streaming example
   async bulkCreateProducts(products: any[], token: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      const metadata = new grpc.Metadata();
+      const metadata = grpc.Metadata();
       metadata.set("authorization", `Bearer ${token}`);
       
       const call = this.client.BulkCreateProducts(metadata, (error: any, response: any) => {
@@ -1177,7 +1177,7 @@ export class GrpcConnectionPool {
         this.connections.delete(firstKey);
       }
       
-      const client = new serviceType(
+      const client = serviceType(
         address,
         grpc.credentials.createInsecure(),
         {

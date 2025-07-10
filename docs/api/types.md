@@ -668,7 +668,7 @@ const handler: RouteHandler = (req: VerbRequest, res: VerbResponse) => {
   });
 };
 
-const app = createServer();
+const app = createServer(ServerProtocol.HTTP);
 app.get("/users/:id", handler);
 ```
 
