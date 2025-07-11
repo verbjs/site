@@ -49,7 +49,79 @@
         </div>
       </div>
     </template>
-    <template v-if="isHomePage" #home-features-after></template>
+    <template v-if="isHomePage" #home-features-after>
+      <!-- Quick Start Section -->
+      <div class="quick-start-section">
+        <div class="quick-start-container">
+          <div class="quick-start-content">
+            <div class="quick-start-header">
+              <h2 class="quick-start-title">Quick Start</h2>
+              <p class="quick-start-subtitle">Get a fullstack Verb application running in 30 seconds:</p>
+            </div>
+            
+            <div class="quick-start-grid">
+              <!-- Left: Command -->
+              <div class="quick-start-command">
+                <div class="command-block">
+                  <div class="command-header">
+                    <span class="command-title">Create a new project</span>
+                  </div>
+                  <div class="command-code">
+                    <pre><code>bunx create-verb my-app</code></pre>
+                  </div>
+                </div>
+                
+                <div class="command-block">
+                  <div class="command-header">
+                    <span class="command-title">Start developing</span>
+                  </div>
+                  <div class="command-code">
+                    <pre><code>cd my-app
+bun run dev</code></pre>
+                  </div>
+                </div>
+                
+                <div class="launch-info">
+                  <p><strong>Visit <a href="http://localhost:3001" target="_blank">http://localhost:3001</a> to see your app! 🚀</strong></p>
+                </div>
+              </div>
+              
+              <!-- Right: What You Get -->
+              <div class="quick-start-features">
+                <h3 class="features-title">What You Get</h3>
+                <ul class="features-list">
+                  <li class="feature-item-list">
+                    <span class="feature-icon-small">⚛️</span>
+                    <strong>React Frontend</strong> with TypeScript and hot reloading
+                  </li>
+                  <li class="feature-item-list">
+                    <span class="feature-icon-small">🔥</span>
+                    <strong>REST API</strong> with CRUD examples (users, products)
+                  </li>
+                  <li class="feature-item-list">
+                    <span class="feature-icon-small">🛠️</span>
+                    <strong>Interactive API Explorer</strong> at <code>/api-demo</code>
+                  </li>
+                  <li class="feature-item-list">
+                    <span class="feature-icon-small">⚡</span>
+                    <strong>Verb's withRoutes</strong> pattern using Bun's native routing
+                  </li>
+                  <li class="feature-item-list">
+                    <span class="feature-icon-small">📦</span>
+                    <strong>Zero configuration</strong> - everything works out of the box
+                  </li>
+                </ul>
+                
+                <div class="tip-box">
+                  <div class="tip-header">💡 Tip</div>
+                  <p>Verb is built exclusively for Bun runtime. The <code>create-verb</code> tool downloads the latest boilerplate from <a href="https://github.com/verbjs/boilerplate" target="_blank">verbjs/boilerplate</a> and sets up everything automatically with Bun.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
   </Layout>
 </template>
 
@@ -254,6 +326,212 @@ const codeSnippet = computed(() => {
   color: var(--vp-c-text-2, #555);
 }
 
+/* Quick Start Section */
+.quick-start-section {
+  padding: 64px 24px;
+  background: var(--vp-c-bg-alt, #f6f6f7);
+  border-top: 1px solid var(--vp-c-divider, #e2e2e3);
+}
+
+.quick-start-container {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.quick-start-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.quick-start-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--vp-c-text-1);
+}
+
+.quick-start-subtitle {
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  margin: 0;
+}
+
+.quick-start-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+/* Left Column - Commands */
+.quick-start-command {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.command-block {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.command-header {
+  background: var(--vp-c-bg-soft);
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--vp-c-divider);
+}
+
+.command-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+
+.command-code {
+  padding: 0;
+}
+
+.command-code pre {
+  margin: 0;
+  padding: 20px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-1);
+  overflow-x: auto;
+}
+
+.command-code code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.launch-info {
+  text-align: center;
+  margin-top: 8px;
+}
+
+.launch-info p {
+  margin: 0;
+  font-size: 16px;
+}
+
+.launch-info a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.launch-info a:hover {
+  text-decoration: underline;
+}
+
+/* Right Column - Features */
+.quick-start-features {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.features-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--vp-c-text-1);
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feature-item-list {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+  transition: border-color 0.25s;
+}
+
+.feature-item-list:hover {
+  border-color: var(--vp-c-brand-1);
+}
+
+.feature-icon-small {
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.feature-item-list strong {
+  color: var(--vp-c-text-1);
+}
+
+.feature-item-list code {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: var(--vp-font-family-mono);
+}
+
+.tip-box {
+  background: var(--vp-c-bg);
+  border: 1px solid var(--vp-c-brand-soft);
+  border-radius: 12px;
+  padding: 20px;
+  position: relative;
+}
+
+.tip-header {
+  font-weight: 600;
+  color: var(--vp-c-brand-1);
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.tip-box p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--vp-c-text-2);
+}
+
+.tip-box code {
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: var(--vp-font-family-mono);
+}
+
+.tip-box a {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+}
+
+.tip-box a:hover {
+  text-decoration: underline;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .hero-container {
@@ -272,6 +550,20 @@ const codeSnippet = computed(() => {
   
   .hero-right pre {
     font-size: 12px;
+    padding: 16px;
+  }
+  
+  .quick-start-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .quick-start-title {
+    font-size: 28px;
+  }
+  
+  .command-code pre {
+    font-size: 13px;
     padding: 16px;
   }
 }

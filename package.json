@@ -1,5 +1,6 @@
 {
-  "name": "vitepress-project",
+  "name": "verb-site",
+  "author": "Wess Cope",
   "private": true,
   "type": "module",
   "scripts": {
