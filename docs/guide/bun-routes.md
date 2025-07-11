@@ -101,8 +101,18 @@ const App = () => {
   );
 };
 
-const root = createRoot(document.getElementById("root")!);
-root.render(<App />);
+// Mount React app with proper DOM ready handling
+function mountApp() {
+  const root = createRoot(document.getElementById("root")!);
+  root.render(<App />);
+}
+
+// Handle both immediate and deferred DOM ready states
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', mountApp);
+} else {
+  mountApp();
+}
 ```
 
 ## Route Types
