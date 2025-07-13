@@ -1,6 +1,7 @@
 {
   "name": "verb-site",
   "author": "Wess Cope",
+  "homepage": "https://verb.codes",
   "private": true,
   "type": "module",
   "scripts": {
