@@ -1027,7 +1027,7 @@ export class ProductClient {
 }
 
 // Usage example
-export async function clientExample() {
+export const clientExample = async () => {
   const client = new ProductClient();
   
   try {

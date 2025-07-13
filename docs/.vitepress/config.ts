@@ -23,6 +23,7 @@ export default defineConfig({
       { text: 'Guide', link: '/guide/' },
       { text: 'API', link: '/api/' },
       { text: 'Examples', link: '/examples/' },
+      { text: 'FAQ', link: '/faq' },
       { text: 'GitHub', link: 'https://github.com/verbjs/verb' }
     ],
 
@@ -63,6 +64,23 @@ export default defineConfig({
             { text: 'Error Handling', link: '/guide/error-handling' },
             { text: 'Performance', link: '/guide/performance' },
             { text: 'Testing', link: '/guide/testing' }
+          ]
+        },
+        {
+          text: 'Bun Ecosystem',
+          items: [
+            { text: 'Bun Adoption Guide', link: '/guide/bun-adoption' },
+            { text: 'Bun vs Node.js', link: '/guide/bun-vs-nodejs' },
+            { text: 'Fallback Strategy', link: '/guide/fallback-strategy' },
+            { text: 'Cross-Runtime Compatibility', link: '/guide/cross-runtime-compatibility' }
+          ]
+        },
+        {
+          text: 'Reference',
+          items: [
+            { text: 'Error Messages', link: '/guide/error-messages' },
+            { text: 'FAQ', link: '/faq' },
+            { text: 'Glossary', link: '/glossary' }
           ]
         }
       ],

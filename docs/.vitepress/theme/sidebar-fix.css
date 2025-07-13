@@ -1,0 +1,7 @@
+/* Minimal sidebar width fix */
+@media (min-width: 1280px) {
+  /* Constrain the sidebar container width slightly */
+  .VPSidebar .container {
+    max-width: 280px;
+  }
+}

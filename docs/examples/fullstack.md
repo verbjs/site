@@ -320,10 +320,10 @@ const App: React.FC = () => {
 };
 
 // Mount React app with proper DOM ready handling
-function mountApp() {
+const mountApp = () => {
   const root = createRoot(document.getElementById("root")!);
   root.render(<App />);
-}
+};
 
 // Handle both immediate and deferred DOM ready states
 if (document.readyState === 'loading') {
@@ -698,7 +698,7 @@ import { ServerProtocol } from "verb";
 
 const connections = new Set<WebSocket>();
 
-export function setupWebSocket(app: any) {
+export const setupWebSocket = (app: any) => {
   // Create WebSocket server
   const wsServer = app.createServer?.(ServerProtocol.WEBSOCKET);
   
@@ -744,7 +744,7 @@ export function setupWebSocket(app: any) {
   }
 }
 
-export function broadcastMessage(message: any) {
+export const broadcastMessage = (message: any) => {
   const messageStr = JSON.stringify(message);
   
   for (const ws of connections) {

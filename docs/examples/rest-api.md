@@ -752,14 +752,14 @@ export const authorize = (roles: string[]) => {
 };
 
 // middleware/validation.ts
-export const validate = (schema, source = "body") => {
-  return (req, res, next) => {
+export const validate = (schema: any, source = "body") => {
+  return (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data = req[source];
+      const data = (req as any)[source];
       const validated = schema.parse(data);
-      req[source] = validated;
+      (req as any)[source] = validated;
       next();
-    } catch (error) {
+    } catch (error: any) {
       return res.status(400).json({
         error: "Validation failed",
         code: "VALIDATION_ERROR",
@@ -770,18 +770,18 @@ export const validate = (schema, source = "body") => {
 };
 
 // middleware/asyncHandler.ts
-export const asyncHandler = (fn) => {
-  return (req, res, next) => {
+export const asyncHandler = (fn: Function) => {
+  return (req: Request, res: Response, next: NextFunction) => {
     Promise.resolve(fn(req, res, next)).catch(next);
   };
 };
 
 // middleware/errorHandler.ts
-export const errorHandler = (err, req, res, next) => {
+export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   console.error("Error:", err);
   
   // Database errors
-  if (err.code === "23505") { // Unique constraint violation
+  if ((err as any).code === "23505") { // Unique constraint violation
     return res.status(409).json({
       error: "Resource already exists",
       code: "DUPLICATE_RESOURCE"
@@ -793,7 +793,7 @@ export const errorHandler = (err, req, res, next) => {
     return res.status(400).json({
       error: "Validation failed",
       code: "VALIDATION_ERROR",
-      details: err.details
+      details: (err as any).details
     });
   }
   

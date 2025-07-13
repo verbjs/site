@@ -425,11 +425,11 @@ Catch-all handler for unmatched routes.
 
 ### Response Helper
 ```typescript
-const sendSuccess = (res, data) => {
+const sendSuccess = (res: Response, data: any) => {
   res.json({ success: true, data });
 };
 
-const sendError = (res, message, status = 400) => {
+const sendError = (res: Response, message: string, status = 400) => {
   res.status(status).json({ success: false, error: message });
 };
 ```
@@ -448,7 +448,7 @@ app.get("/async-example", async (req, res) => {
 
 ### Route Validation
 ```typescript
-const validateUser = (req, res, next) => {
+const validateUser = (req: Request, res: Response, next: NextFunction) => {
   const { name, email } = req.body;
   
   if (!name || !email) {

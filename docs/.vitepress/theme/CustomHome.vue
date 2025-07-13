@@ -50,6 +50,25 @@
       </div>
     </template>
     <template v-if="isHomePage" #home-features-after>
+      <!-- Performance Metrics Section -->
+      <div class="performance-metrics-section" v-if="performance && performance.length">
+        <div class="performance-container">
+          <div class="performance-header">
+            <h2 class="performance-title">Proven Performance</h2>
+            <p class="performance-subtitle">Benchmarked against leading frameworks with real-world scenarios</p>
+          </div>
+          <div class="performance-grid">
+            <div class="performance-metric" v-for="metric in performance" :key="metric.label">
+              <div class="metric-value">{{ metric.metric }}</div>
+              <div class="metric-label">{{ metric.label }}</div>
+              <div class="metric-description">{{ metric.description }}</div>
+            </div>
+          </div>
+          <div class="benchmark-note">
+            <p>Results from comprehensive benchmarks on Bun 1.0+ with 10,000 requests. <a href="/guide/performance" class="benchmark-link">View detailed benchmarks →</a></p>
+          </div>
+        </div>
+      </div>
       <!-- Quick Start Section -->
       <div class="quick-start-section">
         <div class="quick-start-container">
@@ -135,6 +154,7 @@ const Layout = DefaultTheme.Layout
 const { frontmatter } = useData()
 const hero = frontmatter.value.hero || {}
 const features = frontmatter.value.features || []
+const performance = frontmatter.value.performance || []
 const isHomePage = frontmatter.value.layout === 'home'
 
 const codeSnippet = computed(() => {
@@ -324,6 +344,112 @@ const codeSnippet = computed(() => {
   line-height: 1.6;
   margin: 0;
   color: var(--vp-c-text-2, #555);
+}
+
+/* Performance Metrics Section */
+.performance-metrics-section {
+  padding: 64px 24px;
+  background: var(--vp-c-bg);
+}
+
+.performance-container {
+  max-width: 1152px;
+  margin: 0 auto;
+}
+
+.performance-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.performance-title {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0 0 12px 0;
+  color: var(--vp-c-text-1);
+}
+
+.performance-subtitle {
+  font-size: 18px;
+  color: var(--vp-c-text-2);
+  margin: 0;
+}
+
+.performance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.performance-metric {
+  background: linear-gradient(135deg, var(--vp-c-brand-1) 0%, var(--vp-c-brand-2) 100%);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease;
+}
+
+.performance-metric:hover {
+  transform: translateY(-4px);
+}
+
+.performance-metric::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+  pointer-events: none;
+}
+
+.metric-value {
+  font-size: 36px;
+  font-weight: 800;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.metric-label {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  opacity: 0.95;
+}
+
+.metric-description {
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.benchmark-note {
+  text-align: center;
+  padding: 24px;
+  background: var(--vp-c-bg-soft);
+  border-radius: 12px;
+  border: 1px solid var(--vp-c-divider);
+}
+
+.benchmark-note p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
+.benchmark-link {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.benchmark-link:hover {
+  text-decoration: underline;
 }
 
 /* Quick Start Section */

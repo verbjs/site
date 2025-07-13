@@ -68,6 +68,15 @@ export default {
             { text: 'Performance', link: '/guide/performance' },
             { text: 'Testing', link: '/guide/testing' }
           ]
+        },
+        {
+          text: 'Bun Ecosystem',
+          items: [
+            { text: 'Bun Adoption Guide', link: '/guide/bun-adoption' },
+            { text: 'Bun vs Node.js', link: '/guide/bun-vs-nodejs' },
+            { text: 'Fallback Strategy', link: '/guide/fallback-strategy' },
+            { text: 'Cross-Runtime Compatibility', link: '/guide/cross-runtime-compatibility' }
+          ]
         }
       ],
       

@@ -100,7 +100,7 @@ setInterval(() => {
 Send messages to multiple clients:
 
 ```typescript
-function broadcast(message, excludeClient = null) {
+const broadcast = (message: any, excludeClient: string | null = null) => {
   const data = Buffer.from(JSON.stringify(message));
   
   for (const [clientId, client] of clients) {
@@ -108,7 +108,7 @@ function broadcast(message, excludeClient = null) {
       app.send(data, client.port, client.address);
     }
   }
-}
+};
 
 app.onMessage((message, remoteInfo) => {
   const data = JSON.parse(message.toString());
@@ -184,7 +184,7 @@ app.onMessage((message, remoteInfo) => {
   }
 });
 
-function broadcastGameUpdate() {
+const broadcastGameUpdate = () => {
   const update = JSON.stringify({
     type: "game_update",
     players: Array.from(gameState.players.values()),
@@ -195,7 +195,7 @@ function broadcastGameUpdate() {
   for (const player of gameState.players.values()) {
     app.send(update, player.port, player.address);
   }
-}
+};
 
 // Game loop
 setInterval(() => {
@@ -368,22 +368,22 @@ app.withOptions({
 const messageQueue = [];
 let batchTimeout;
 
-function queueMessage(message, port, address) {
+const queueMessage = (message: any, port: number, address: string) => {
   messageQueue.push({ message, port, address });
   
   if (!batchTimeout) {
     batchTimeout = setTimeout(flushMessages, 10); // 10ms batching
   }
-}
+};
 
-function flushMessages() {
+const flushMessages = () => {
   const batch = messageQueue.splice(0);
   batchTimeout = null;
   
   for (const { message, port, address } of batch) {
     app.send(message, port, address);
   }
-}
+};
 ```
 
 ## Use Cases

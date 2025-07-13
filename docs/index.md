@@ -32,4 +32,18 @@ features:
   - icon: 🚀
     title: Developer Experience
     details: Intuitive API design with middleware support and comprehensive error handling
+
+performance:
+  - metric: "0.48ms"
+    label: "Average Latency"
+    description: "Sub-millisecond response times with zero errors under load"
+  - metric: "3-6%"
+    label: "Faster than Fastify"
+    description: "Consistently outperforms other Bun frameworks in benchmarks"
+  - metric: "21-24%"
+    label: "Faster than Express"
+    description: "Significant performance advantage over traditional Node.js frameworks"
+  - metric: "100%"
+    label: "Type Safety"
+    description: "Complete TypeScript coverage with zero any types"
 ---

@@ -294,7 +294,7 @@ app.websocket({
 });
 
 // Helper function to broadcast to all connections
-function broadcast(data) {
+const broadcast = (data: any) => {
   const message = JSON.stringify(data);
   for (const ws of connections) {
     try {
@@ -304,7 +304,7 @@ function broadcast(data) {
       connections.delete(ws);
     }
   }
-}
+};
 
 app.listen(3000);
 console.log("Chat server running on http://localhost:3000");
@@ -363,7 +363,7 @@ app.websocket({
   }
 });
 
-function handleJoin(ws, data) {
+const handleJoin = (ws: any, data: any) => {
   const { username, room } = data;
   
   // Leave previous room if any
@@ -378,7 +378,7 @@ function handleJoin(ws, data) {
   if (!rooms.has(room)) {
     rooms.set(room, new Set());
   }
-  rooms.get(room).add(ws);
+  rooms.get(room)!.add(ws);
   
   // Notify room
   broadcastToRoom(room, {
@@ -391,19 +391,19 @@ function handleJoin(ws, data) {
   ws.send(JSON.stringify({
     type: "joined",
     room,
-    userCount: rooms.get(room).size
+    userCount: rooms.get(room)!.size
   }));
-}
+};
 
-function handleLeave(ws, data) {
+const handleLeave = (ws: any, data: any) => {
   const { room } = data;
   const connection = connections.get(ws);
   
   if (connection && rooms.has(room)) {
-    rooms.get(room).delete(ws);
+    rooms.get(room)!.delete(ws);
     
     // Clean up empty rooms
-    if (rooms.get(room).size === 0) {
+    if (rooms.get(room)!.size === 0) {
       rooms.delete(room);
     } else {
       broadcastToRoom(room, {
@@ -413,7 +413,7 @@ function handleLeave(ws, data) {
       });
     }
   }
-}
+};
 
 function handleMessage(ws, data) {
   const connection = connections.get(ws);
