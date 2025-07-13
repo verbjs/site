@@ -622,7 +622,7 @@ afterEach(() => {
 
 ```typescript
 // Use fixed timestamps and IDs for consistent testing
-const mockDate = new Date('2024-01-01T00:00:00Z');
+const mockDate = new Date('2025-01-01T00:00:00Z');
 const mockId = 'test-id-12345';
 
 jest.spyOn(global, 'Date').mockImplementation(() => mockDate);

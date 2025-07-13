@@ -131,7 +131,7 @@ export default {
 
     footer: {
       message: 'Released under the MIT License.',
-      copyright: 'Copyright © 2024 Wess Cope'
+      copyright: 'Copyright © 2025 Wess Cope'
     },
 
     editLink: {

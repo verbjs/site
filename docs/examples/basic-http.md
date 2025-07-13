@@ -369,7 +369,7 @@ Catch-all handler for unmatched routes.
 ```json
 {
   "message": "Welcome to Verb HTTP Server!",
-  "timestamp": "2024-01-01T12:00:00.000Z",
+  "timestamp": "2025-01-01T12:00:00.000Z",
   "version": "1.0.0"
 }
 ```
@@ -404,7 +404,7 @@ Catch-all handler for unmatched routes.
   "id": "1704110400000",
   "name": "John Doe",
   "email": "john@example.com",
-  "createdAt": "2024-01-01T12:00:00.000Z"
+  "createdAt": "2025-01-01T12:00:00.000Z"
 }
 ```
 
