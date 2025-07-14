@@ -142,7 +142,7 @@ primary_region = "sjc"
 ```
 
 ### Dockerfile for Fly.io
-```dockerfile
+```docker
 FROM oven/bun:1-slim
 WORKDIR /app
 

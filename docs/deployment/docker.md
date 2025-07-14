@@ -6,7 +6,7 @@ Deploy your Verb applications using Docker with optimized multi-stage builds for
 
 Create a `Dockerfile` in your project root:
 
-```dockerfile
+```docker
 # Multi-stage build for optimal production image
 FROM oven/bun:1 AS base
 WORKDIR /app
@@ -102,7 +102,7 @@ volumes:
 ### Environment-specific Dockerfiles
 
 #### Development
-```dockerfile
+```docker
 FROM oven/bun:1
 WORKDIR /app
 COPY package.json bun.lockb ./
@@ -113,7 +113,7 @@ CMD ["bun", "--hot", "src/server.ts"]
 ```
 
 #### Production with Build Step
-```dockerfile
+```docker
 FROM oven/bun:1 AS base
 WORKDIR /app
 
@@ -168,7 +168,7 @@ services:
 ```
 
 ### SQLite Example
-```dockerfile
+```docker
 # Create volume for SQLite database
 VOLUME ["/app/data"]
 
@@ -182,7 +182,7 @@ ENV DATABASE_URL=sqlite:///app/data/database.sqlite
 ## Security Best Practices
 
 ### Non-root User
-```dockerfile
+```docker
 # Create user with specific UID/GID
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 verb
@@ -193,7 +193,7 @@ USER verb
 ```
 
 ### Secrets Management
-```dockerfile
+```docker
 # Use build secrets for sensitive data
 # syntax=docker/dockerfile:1
 FROM oven/bun:1
@@ -238,20 +238,20 @@ jobs:
 ## Common Issues
 
 ### Bun Cache
-```dockerfile
+```docker
 # Clear Bun cache if needed
 RUN bun pm cache rm
 ```
 
 ### File Permissions
-```dockerfile
+```docker
 # Fix file permissions
 COPY --chown=verb:nodejs . .
 RUN chmod +x scripts/*.sh
 ```
 
 ### Health Check Timeout
-```dockerfile
+```docker
 # Increase timeout for slow startup
 HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
   CMD bun --eval "fetch('http://localhost:3000/health').then(r => r.ok ? process.exit(0) : process.exit(1)).catch(() => process.exit(1))"

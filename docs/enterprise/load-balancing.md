@@ -671,7 +671,7 @@ http {
 
 ### HAProxy Configuration
 
-```haproxy
+```
 # /etc/haproxy/haproxy.cfg
 
 global

@@ -58,7 +58,7 @@ Yes! Verb is designed for incremental adoption:
 2. **Add protocols gradually**: Begin with HTTP, add WebSocket when needed
 3. **Migrate progressively**: Move routes over time
 
-See our [migration guides](/migration/) for detailed instructions.
+See our [migration guides](/migration/progressive-adoption) for detailed instructions.
 
 ## Development
 
@@ -245,7 +245,7 @@ Yes! Verb includes:
 Verb supports all major deployment platforms:
 
 **Docker**:
-```dockerfile
+```docker
 FROM oven/bun:latest
 COPY . .
 RUN bun install
@@ -257,7 +257,7 @@ CMD ["bun", "start"]
 **Fly.io**: `fly deploy`
 **Vercel**: Works with Edge Functions
 
-See our [deployment guide](/deployment/) for detailed instructions.
+See our [deployment guide](/deployment/production-config) for detailed instructions.
 
 ### How do I handle environment variables?
 

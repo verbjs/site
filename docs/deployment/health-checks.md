@@ -551,7 +551,7 @@ spec:
 
 ### Dockerfile Health Check
 
-```dockerfile
+```docker
 # Dockerfile
 FROM oven/bun:1-slim
 

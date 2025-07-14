@@ -506,7 +506,7 @@ export const taskManager = new TaskManager();
 
 ### Docker Signal Handling
 
-```dockerfile
+```docker
 # Dockerfile
 FROM oven/bun:1-slim
 

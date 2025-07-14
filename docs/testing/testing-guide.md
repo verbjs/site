@@ -703,4 +703,4 @@ describe('Performance Tests', () => {
 
 - [Integration Testing Patterns](./integration-testing.md)
 - [Mocking Strategies](./mocking-strategies.md)
-- [CI/CD Examples](./ci-cd-examples.md)
+- [CI/CD Pipelines](./ci-cd-pipelines.md)

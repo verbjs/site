@@ -1179,5 +1179,5 @@ export const sleep = (ms: number): Promise<void> => {
 ## Next Steps
 
 - [Mocking Strategies](./mocking-strategies.md)
-- [CI/CD Examples](./ci-cd-examples.md)
+- [CI/CD Pipelines](./ci-cd-pipelines.md)
 - [Testing Guide](./testing-guide.md)
