@@ -19,5 +19,8 @@
         "@algolia/client-search"
       ]
     }
+  },
+  "dependencies": {
+    "rove": "github:wess/rove"
   }
 }
