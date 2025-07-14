@@ -417,7 +417,7 @@ However, use Verb's native middleware when available for better performance.
 
 ### Where can I get help?
 
-- **Documentation**: [verbs.code/docs](https://verbs.code/docs)
+- **Documentation**: [verb.codes/docs](https://verb.codes/docs)
 - **GitHub Issues**: [github.com/verbjs/verb](https://github.com/verbjs/verb)
 - **Stack Overflow**: Tag questions with `verb-framework`
 
