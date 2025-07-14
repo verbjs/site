@@ -363,4 +363,3 @@ If you encounter issues:
 1. Check the [GitHub Issues](https://github.com/verbjs/verb/issues)
 2. Review the [documentation](/guide/)
 3. Ask questions in [GitHub Discussions](https://github.com/verbjs/verb/discussions)
-4. Join the community on Discord

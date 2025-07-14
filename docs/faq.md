@@ -419,7 +419,6 @@ However, use Verb's native middleware when available for better performance.
 
 - **Documentation**: [verbs.code/docs](https://verbs.code/docs)
 - **GitHub Issues**: [github.com/verbjs/verb](https://github.com/verbjs/verb)
-- **Discord**: Join our community server
 - **Stack Overflow**: Tag questions with `verb-framework`
 
 ### How can I contribute?
@@ -444,8 +443,7 @@ If your question isn't answered here:
 
 1. **Search the docs**: Use the search function above
 2. **Check GitHub issues**: Someone might have asked already
-3. **Ask the community**: Join our Discord for real-time help
-4. **Create an issue**: We'll add popular questions to this FAQ
+3. **Create an issue**: We'll add popular questions to this FAQ
 
 ---
 

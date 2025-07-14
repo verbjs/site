@@ -22,7 +22,7 @@ Addressing common concerns and questions about adopting Bun for production appli
 2. **Gradual Migration**: Start with non-critical services, migrate incrementally
 3. **Monitoring**: Use APM tools to detect issues early
 4. **Fallback Plans**: Document rollback procedures (though rarely needed)
-5. **Community Support**: Active Discord and GitHub issue resolution
+5. **Community Support**: Active GitHub issue resolution
 
 ```typescript
 // Example: Robust error handling for production
@@ -220,7 +220,6 @@ await app.listen(3000);
 ## Support and Resources
 
 ### Community
-- **Discord**: Active community with quick responses
 - **GitHub**: Rapid issue resolution (usually < 48 hours)
 - **Documentation**: Comprehensive and up-to-date
 
