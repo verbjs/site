@@ -23,9 +23,9 @@ type Middleware = (
 Applied to all routes:
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Logger middleware
 app.use((req, res, next) => {
@@ -53,7 +53,7 @@ app.get("/", (req, res) => {
 Applied to specific paths:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // API middleware
 app.use("/api", (req, res, next) => {
@@ -82,7 +82,7 @@ app.get("/api/users", (req, res) => {
 Applied to individual routes:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const authenticate = (req, res, next) => {
   // Authentication logic
@@ -112,9 +112,9 @@ Verb provides several built-in middleware functions:
 ### JSON Parser
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Parse JSON bodies
 app.use(middleware.json());
@@ -134,7 +134,7 @@ app.post("/users", (req, res) => {
 ### URL-Encoded Parser
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Parse URL-encoded bodies
 app.use(middleware.urlencoded());
@@ -154,7 +154,7 @@ app.post("/form", (req, res) => {
 ### Static Files
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Serve static files
 app.use(middleware.staticFiles("public"));
@@ -170,7 +170,7 @@ app.use("/static", middleware.staticFiles("assets", {
 ### CORS
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Basic CORS
 app.use(middleware.cors());
@@ -188,7 +188,7 @@ app.use(middleware.cors({
 ### Rate Limiting
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Basic rate limiting
 app.use(middleware.rateLimit());
@@ -210,7 +210,7 @@ app.use(middleware.rateLimit({
 ### Security Headers
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Basic security headers
 app.use(middleware.securityHeaders());
@@ -241,7 +241,7 @@ app.use(middleware.securityHeaders({
 ### Authentication Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const authenticate = async (req, res, next) => {
   try {
@@ -265,7 +265,7 @@ app.use("/api/protected", authenticate);
 ### Request Logging
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const logger = (req, res, next) => {
   const start = Date.now();
@@ -290,7 +290,7 @@ app.use(logger);
 ### Request Validation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const validateUser = (req, res, next) => {
   const { name, email } = req.body;
@@ -319,7 +319,7 @@ app.post("/users", validateUser, (req, res) => {
 ### Response Transformation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const addMetadata = (req, res, next) => {
   // Override res.json to add metadata
@@ -358,7 +358,7 @@ type ErrorHandler = (
 ### Basic Error Handler
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/error", (req, res) => {
   throw new Error("Something went wrong!");
@@ -378,7 +378,7 @@ app.use((error, req, res, next) => {
 ### Advanced Error Handler
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const errorHandler = (error, req, res, next) => {
   console.error("Error:", error);
@@ -417,7 +417,7 @@ app.use(errorHandler);
 ### Async Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const asyncMiddleware = async (req, res, next) => {
   try {
@@ -436,7 +436,7 @@ app.use("/api/user", asyncMiddleware);
 ### Promise-Based Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const promiseMiddleware = (req, res, next) => {
   someAsyncOperation()
@@ -457,7 +457,7 @@ app.use(promiseMiddleware);
 ### Composing Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const compose = (...middlewares) => {
   return (req, res, next) => {
@@ -497,7 +497,7 @@ app.use("/admin", authFlow);
 ### Conditional Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const conditionalMiddleware = (condition, middleware) => {
   return (req, res, next) => {
@@ -535,15 +535,15 @@ userRouter.get("/", (req, res) => {
   res.json({ users: [] });
 });
 
-const app = createServer();
+const app = server.http();
 app.use("/users", userRouter);
 ```
 
 ### Sub-Application Middleware
 
 ```typescript
-const app = createServer();
-const apiApp = createServer();
+const app = server.http();
+const apiApp = server.http();
 
 // API-specific middleware
 apiApp.use((req, res, next) => {
@@ -564,7 +564,7 @@ app.use("/api", apiApp);
 ### Middleware Caching
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const cache = new Map();
 
@@ -591,7 +591,7 @@ app.use("/api/static", cachingMiddleware);
 ### Middleware Ordering
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Order matters - most specific first
 app.use(middleware.cors());        // 1. CORS headers
@@ -642,10 +642,10 @@ test("authentication middleware", async () => {
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("middleware integration", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.use((req, res, next) => {
     req.middlewareRan = true;

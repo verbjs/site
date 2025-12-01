@@ -570,10 +570,10 @@ function getTodayCounterValue(metricName: string): number {
 ### Basic Setup
 
 ```typescript
-import { createServer } from 'verb';
+import { server } from 'verb';
 import { httpMetrics, createMetricsEndpoint, BusinessMetrics } from './middleware/metrics';
 
-const app = createServer();
+const app = server.http();
 
 // Initialize business metrics
 BusinessMetrics.initializeBusinessMetrics();

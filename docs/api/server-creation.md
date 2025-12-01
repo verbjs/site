@@ -23,19 +23,19 @@ Returns a unified server instance that implements the appropriate server interfa
 ### Example
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // Default HTTP server (explicit)
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Explicit HTTP server
-const httpApp = createServer(ServerProtocol.HTTP);
+const httpApp = server.http();
 
 // HTTPS server
-const httpsApp = createServer(ServerProtocol.HTTPS);
+const httpsApp = server.https();
 
 // WebSocket server
-const wsApp = createServer(ServerProtocol.WEBSOCKET);
+const wsApp = server.websocket();
 ```
 
 ## `createUnifiedServer(protocol?)`
@@ -331,7 +331,7 @@ interface DevelopmentOptions {
 ### Example Configuration
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.withOptions({
   port: 3000,
@@ -444,7 +444,7 @@ console.log(app.path()); // "/"
 
 ```typescript
 try {
-  const app = createServer(ServerProtocol.HTTP);
+  const app = server.http();
 } catch (error) {
   console.error("Failed to create server:", error);
 }
@@ -465,9 +465,9 @@ try {
 ### Basic HTTP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -479,9 +479,9 @@ app.listen(3000);
 ### HTTPS Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.withOptions({
   port: 443,
@@ -498,9 +498,9 @@ app.listen();
 ### WebSocket Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.websocket({
   open: (ws) => {
@@ -517,22 +517,22 @@ app.listen(3001);
 ### Multiple Servers
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP server
-const httpApp = createServer(ServerProtocol.HTTP);
+const httpApp = server.http();
 httpApp.get("/", (req, res) => res.json({ protocol: "http" }));
 httpApp.listen(3000);
 
 // WebSocket server
-const wsApp = createServer(ServerProtocol.WEBSOCKET);
+const wsApp = server.websocket();
 wsApp.websocket({
   open: (ws) => ws.send("WebSocket connected")
 });
 wsApp.listen(3001);
 
 // gRPC server
-const grpcApp = createServer(ServerProtocol.GRPC);
+const grpcApp = server.grpc();
 grpcApp.addMethod("TestService", {
   name: "Test",
   handler: async () => ({ success: true })

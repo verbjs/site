@@ -355,10 +355,10 @@ export const errorLogging = (): Middleware => {
 ### Basic Setup
 
 ```typescript
-import { createServer } from 'verb';
+import { server } from 'verb';
 import { requestLogging, performanceLogging, securityLogging, errorLogging } from './middleware/logging';
 
-const app = createServer();
+const app = server.http();
 
 // Apply logging middleware
 app.use(requestLogging({

@@ -17,10 +17,10 @@ Graceful shutdown ensures that:
 
 ```typescript
 // src/server.ts
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 import { logger } from './utils/logger';
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Your routes and middleware
 app.get('/health', async (req, res) => {
@@ -145,12 +145,12 @@ export const connectionTracker = new ConnectionTracker();
 
 ```typescript
 // src/server/gracefulServer.ts
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 import { connectionTracker } from '../utils/connectionTracker';
 import { logger } from '../utils/logger';
 
 export class GracefulServer {
-  private app = createServer(ServerProtocol.HTTP);
+  private app = server.http();
   private server: any;
   private isShuttingDown = false;
   private shutdownPromise: Promise<void> | null = null;
@@ -286,11 +286,11 @@ export class GracefulServer {
 
 ```typescript
 // src/websocket/gracefulWebSocket.ts
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 import { logger } from '../utils/logger';
 
 export class GracefulWebSocketServer {
-  private app = createServer(ServerProtocol.WEBSOCKET);
+  private app = server.websocket();
   private connections = new Set<any>();
   private isShuttingDown = false;
   

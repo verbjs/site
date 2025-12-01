@@ -7,9 +7,9 @@ API reference for creating and configuring HTTP servers with Verb, including rou
 ### Basic HTTP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from HTTP server!" });
@@ -22,10 +22,10 @@ console.log("HTTP server running on http://localhost:3000");
 ### Default Server (HTTP)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP is the default protocol, but it's better to be explicit
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/health", (req, res) => {
   res.json({ status: "healthy", timestamp: new Date().toISOString() });

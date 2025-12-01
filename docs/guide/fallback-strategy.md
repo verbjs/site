@@ -46,10 +46,10 @@ if (!global.process) {
 
 ```typescript
 // middleware-bridge.ts - Ensure Express middleware works in Verb
-import { createServer } from "verb";
+import { server } from "verb";
 import type { Request, Response, NextFunction } from "express";
 
-const app = createServer();
+const app = server.http();
 
 // Compatibility wrapper for Express middleware
 const wrapExpressMiddleware = (middleware: Function) => {
@@ -471,9 +471,9 @@ const database = await RuntimeDetector.getOptimalImplementation({
 
 ```typescript
 // health-check.ts - Runtime-aware health checks
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/health", (req, res) => {
   const health = {

@@ -7,9 +7,9 @@ This guide covers how to create and configure different types of servers in Verb
 ### Default HTTP Server
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -21,19 +21,19 @@ app.listen(3000);
 ### Explicit Protocol Selection
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP server (explicit)
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 
 // HTTPS server
-const httpsServer = createServer(ServerProtocol.HTTPS);
+const httpsServer = server.https();
 
 // HTTP/2 server
-const http2Server = createServer(ServerProtocol.HTTP2);
+const http2Server = server.http2();
 
 // WebSocket server
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 ```
 
 ## Fluent API
@@ -57,9 +57,9 @@ const tcpApp = server.tcp();
 ### HTTP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Basic routes
 app.get("/", (req, res) => {
@@ -83,9 +83,9 @@ app.listen(3000);
 ### HTTPS Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 // Configure TLS options
 app.withOptions({
@@ -108,9 +108,9 @@ app.listen(443);
 ### HTTP/2 Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP2);
+const app = server.http2();
 
 app.get("/", (req, res) => {
   res.json({ 
@@ -131,9 +131,9 @@ app.listen(3000);
 ### HTTP/2 Secure (HTTP2S)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP2S);
+const app = server.http2s();
 
 app.get("/", (req, res) => {
   res.json({ 
@@ -150,9 +150,9 @@ app.listen(443);
 ### Basic WebSocket Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 
 // HTTP routes still work
 wsServer.get("/", (req, res) => {
@@ -182,9 +182,9 @@ wsServer.listen(3001);
 ### WebSocket Secure (WSS)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const wssServer = createServer(ServerProtocol.WEBSOCKETS);
+const wssServer = server.websockets();
 
 wssServer.websocket({
   open: (ws) => {
@@ -205,9 +205,9 @@ wssServer.listen(443);
 ### Basic gRPC Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const grpcServer = createServer(ServerProtocol.GRPC);
+const grpcServer = server.grpc();
 
 // Add a service
 grpcServer.addService({
@@ -253,9 +253,9 @@ grpcServer.listen(50051);
 ### gRPC Secure (gRPCS)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const grpcsServer = createServer(ServerProtocol.GRPCS);
+const grpcsServer = server.grpc();
 
 grpcsServer.addService({
   name: "SecureService",
@@ -276,9 +276,9 @@ grpcsServer.listen(50052);
 ### Basic UDP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const udpServer = createServer(ServerProtocol.UDP);
+const udpServer = server.udp();
 
 // Handle incoming messages
 udpServer.onMessage((message) => {
@@ -304,9 +304,9 @@ udpServer.listen(3002);
 ### DTLS Server (Secure UDP)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const dtlsServer = createServer(ServerProtocol.DTLS);
+const dtlsServer = server.dtls();
 
 dtlsServer.onMessage((message) => {
   console.log("Secure UDP message:", message.data.toString());
@@ -327,9 +327,9 @@ dtlsServer.listen(3003);
 ### Basic TCP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const tcpServer = createServer(ServerProtocol.TCP);
+const tcpServer = server.tcp();
 
 // Handle new connections
 tcpServer.onConnection((connection) => {
@@ -360,9 +360,9 @@ tcpServer.listen(3004);
 ### TLS Server (Secure TCP)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const tlsServer = createServer(ServerProtocol.TLS);
+const tlsServer = server.tls();
 
 tlsServer.onConnection((connection) => {
   console.log("New TLS connection");
@@ -403,7 +403,7 @@ server.listen(3000);
 ### Listen Options
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Configure before listening
 app.withOptions({
@@ -422,7 +422,7 @@ app.listen();
 ### Advanced Configuration
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Application settings
 app.set("trust proxy", true);
@@ -447,24 +447,24 @@ app.listen();
 Run multiple servers simultaneously:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP server
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 httpServer.get("/", (req, res) => {
   res.json({ protocol: "HTTP" });
 });
 httpServer.listen(3000);
 
 // WebSocket server
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 wsServer.websocket({
   open: (ws) => ws.send("WebSocket ready")
 });
 wsServer.listen(3001);
 
 // gRPC server
-const grpcServer = createServer(ServerProtocol.GRPC);
+const grpcServer = server.grpc();
 grpcServer.addMethod("TestService", {
   name: "Test",
   handler: async () => ({ success: true })
@@ -481,7 +481,7 @@ console.log("gRPC server: localhost:50051");
 ### Startup
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Server is running" });
@@ -497,7 +497,7 @@ console.log("Server started on port 3000");
 ### Graceful Shutdown
 
 ```typescript
-const app = createServer();
+const app = server.http();
 const server = app.listen(3000);
 
 // Graceful shutdown
@@ -519,7 +519,7 @@ process.on("SIGINT", () => {
 ### Server-Level Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Global error handler
 app.use((error, req, res, next) => {

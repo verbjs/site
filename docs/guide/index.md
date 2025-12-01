@@ -22,9 +22,9 @@ Build servers using 12 different protocols:
 ### 🛠️ Unified API
 ```typescript
 // Same API across all protocols
-const httpServer = createServer(ServerProtocol.HTTP);
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
-const grpcServer = createServer(ServerProtocol.GRPC);
+const httpServer = server.http();
+const wsServer = server.websocket();
+const grpcServer = server.grpc();
 
 // All support the same core methods
 httpServer.listen(3000);

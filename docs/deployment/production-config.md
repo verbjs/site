@@ -188,7 +188,7 @@ export const developmentConfig = {
 // src/server.ts
 import config from './config';
 
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.withOptions({
   port: config.port,

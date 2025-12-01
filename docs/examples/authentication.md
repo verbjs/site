@@ -38,7 +38,7 @@ bun install nodemailer otplib zod
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { cors, json, helmet, rateLimit } from "verb/middleware";
 import { authRouter } from "./src/routes/auth";
 import { usersRouter } from "./src/routes/users";
@@ -48,7 +48,7 @@ import { sessionMiddleware } from "./src/middleware/session";
 import { errorHandler } from "./src/middleware/errorHandler";
 import { AuthService } from "./src/services/AuthService";
 
-const app = createServer();
+const app = server.http();
 
 // Security middleware
 app.use(helmet({
@@ -872,14 +872,14 @@ export class AuthService {
 
 ```typescript
 // src/routes/auth.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { z } from "zod";
 import { validate } from "../middleware/validation";
 import { authenticate } from "../middleware/auth";
 import { asyncHandler } from "../middleware/asyncHandler";
 import { AuthService } from "../services/AuthService";
 
-const authRouter = createServer();
+const authRouter = server.http();
 
 // Validation schemas
 const registerSchema = z.object({

@@ -23,9 +23,9 @@ Comprehensive analysis comparing Bun and Node.js for production web applications
 
 ```typescript
 // Identical Verb application tested on both runtimes
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/api/users", async (req, res) => {
   const users = await db.query("SELECT * FROM users LIMIT 100");
@@ -147,7 +147,7 @@ process.on("unhandledRejection", (reason, promise) => {
 
 ```typescript
 // Bun - no build step required
-import { createServer } from "verb";
+import { server } from "verb";
 
 interface User {
   id: string;
@@ -155,7 +155,7 @@ interface User {
   email: string;
 }
 
-const app = createServer();
+const app = server.http();
 
 app.get("/users", (req, res) => {
   const users: User[] = getUsers();
@@ -250,7 +250,7 @@ app.get("/users", (req, res) => {
 
 ```typescript
 // Phase 1: New microservices in Bun
-const newService = createServer(); // Bun + Verb
+const newService = server.http(); // Bun + Verb
 
 // Phase 2: API Gateway handling both
 const gateway = createProtocolGateway();

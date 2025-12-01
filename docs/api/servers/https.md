@@ -7,9 +7,9 @@ API reference for creating secure HTTPS servers with TLS/SSL certificates, secur
 ### Basic HTTPS Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.withOptions({
   port: 443,
@@ -34,7 +34,7 @@ console.log("HTTPS server running on https://localhost:443");
 
 ```typescript
 // Load certificates from files
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.withOptions({
   port: 443,
@@ -318,10 +318,10 @@ app.get("/secure", (req, res) => {
 ### Automatic Redirection
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // Create HTTP server for redirection
-const httpApp = createServer(ServerProtocol.HTTP);
+const httpApp = server.http();
 
 httpApp.use((req, res) => {
   const httpsUrl = `https://${req.hostname}${req.url}`;
@@ -331,7 +331,7 @@ httpApp.use((req, res) => {
 httpApp.listen(80);
 
 // Main HTTPS server
-const httpsApp = createServer(ServerProtocol.HTTPS);
+const httpsApp = server.https();
 
 httpsApp.withOptions({
   port: 443,
@@ -348,9 +348,9 @@ httpsApp.listen(443);
 ### Combined HTTP/HTTPS Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.withOptions({
   // HTTP configuration
@@ -403,7 +403,7 @@ app.withOptions({
 ### HTTP/2 Over HTTPS
 
 ```typescript
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.withOptions({
   port: 443,

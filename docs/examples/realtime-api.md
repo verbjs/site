@@ -36,7 +36,7 @@ bun install zod uuid
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { cors, json, staticFiles } from "verb/middleware";
 import { EventManager } from "./src/services/EventManager";
 import { ConnectionManager } from "./src/services/ConnectionManager";
@@ -45,7 +45,7 @@ import { eventsRouter } from "./src/routes/events";
 import { dashboardRouter } from "./src/routes/dashboard";
 import { authenticate } from "./src/middleware/auth";
 
-const app = createServer();
+const app = server.http();
 
 // Initialize services
 const eventManager = new EventManager();
@@ -804,13 +804,13 @@ export class ConnectionManager {
 
 ```typescript
 // src/routes/realtime.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { z } from "zod";
 import { validate } from "../middleware/validation";
 import { authenticate, optionalAuth } from "../middleware/auth";
 import { asyncHandler } from "../middleware/asyncHandler";
 
-const realtimeRouter = createServer();
+const realtimeRouter = server.http();
 
 // Validation schemas
 const subscribeSchema = z.object({
@@ -959,7 +959,7 @@ export { realtimeRouter };
 
 ```typescript
 // src/routes/dashboard.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { authenticate } from "../middleware/auth";
 import { asyncHandler } from "../middleware/asyncHandler";
 

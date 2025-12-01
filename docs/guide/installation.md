@@ -133,9 +133,9 @@ Add useful scripts to your `package.json`:
 Create your first server (`src/server.ts`):
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ 
@@ -317,17 +317,17 @@ Create a test file (`tests/server.test.ts`):
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("server creation", () => {
-  const app = createServer();
+  const app = server.http();
   expect(app).toBeDefined();
   expect(app.get).toBeDefined();
   expect(app.listen).toBeDefined();
 });
 
 test("basic route", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/test", (req, res) => {
     res.json({ test: true });

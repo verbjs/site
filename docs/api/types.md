@@ -655,7 +655,7 @@ declare module "verb/grpc" {
 ### Basic Type Usage
 
 ```typescript
-import { createServer, VerbRequest, VerbResponse, RouteHandler } from "verb";
+import { server, type Request, type Response, type RouteHandler } from "verb";
 
 const handler: RouteHandler = (req: VerbRequest, res: VerbResponse) => {
   const userId: string = req.params.id;
@@ -668,7 +668,7 @@ const handler: RouteHandler = (req: VerbRequest, res: VerbResponse) => {
   });
 };
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 app.get("/users/:id", handler);
 ```
 

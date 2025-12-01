@@ -54,14 +54,14 @@ afterAll(() => {
 ```typescript
 // tests/unit/api/users.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 describe('Users API', () => {
   let server: any;
   let baseUrl: string;
 
   beforeAll(async () => {
-    const app = createServer(ServerProtocol.HTTP);
+    const app = server.http();
     
     // Setup test routes
     app.get('/api/users', async (req, res) => {
@@ -269,7 +269,7 @@ describe('Database Integration', () => {
 ```typescript
 // tests/integration/api.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 describe('API Integration', () => {
   let server: any;
@@ -338,14 +338,14 @@ describe('API Integration', () => {
 ```typescript
 // tests/integration/websocket.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 describe('WebSocket Integration', () => {
   let server: any;
   let wsUrl: string;
 
   beforeAll(async () => {
-    const app = createServer(ServerProtocol.WEBSOCKET);
+    const app = server.websocket();
     
     app.websocket({
       open: (ws) => {
@@ -524,14 +524,14 @@ export class MockHTTPClient {
 
 ```typescript
 // tests/helpers/server.ts
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 export class TestServer {
   private server: any;
   public baseUrl: string = '';
 
   async start(setupRoutes: (app: any) => void, protocol = ServerProtocol.HTTP) {
-    const app = createServer(protocol);
+    const app = server.http(); // or other protocol
     setupRoutes(app);
     
     this.server = app.withOptions({ port: 0 }).listen();

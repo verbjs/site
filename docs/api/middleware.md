@@ -610,7 +610,7 @@ app.use(responseHelpersMiddleware);
 import { test, expect } from "bun:test";
 
 test("custom middleware", async () => {
-  const app = createServer();
+  const app = server.http();
   
   const testMiddleware = (req, res, next) => {
     req.testValue = "middleware-value";
@@ -630,7 +630,7 @@ test("custom middleware", async () => {
 });
 
 test("error middleware", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/error", (req, res) => {
     throw new Error("Test error");

@@ -291,14 +291,14 @@ describe('PostgreSQL Integration', () => {
 ```typescript
 // tests/integration/api/full-workflow.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 describe('API Integration Workflows', () => {
   let server: any;
   let baseUrl: string;
 
   beforeAll(async () => {
-    const app = createServer(ServerProtocol.HTTP);
+    const app = server.http();
     
     // Mock data store
     const users: any[] = [];
@@ -527,7 +527,7 @@ class MockExternalService {
   private users = new Map<number, any>();
 
   async start(port: number) {
-    const app = createServer(ServerProtocol.HTTP);
+    const app = server.http();
 
     app.get('/users/:id', async (req, res) => {
       const id = parseInt(req.params.id);
@@ -609,7 +609,7 @@ describe('External Service Integration', () => {
 ```typescript
 // tests/integration/protocols/http-websocket.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
 describe('HTTP + WebSocket Integration', () => {
   let server: any;
@@ -617,7 +617,7 @@ describe('HTTP + WebSocket Integration', () => {
   let wsUrl: string;
 
   beforeAll(async () => {
-    const app = createServer(ServerProtocol.WEBSOCKET);
+    const app = server.websocket();
     
     const rooms = new Map<string, Set<any>>();
     const sessions = new Map<any, { id: string; room?: string }>();
@@ -894,7 +894,7 @@ describe('HTTP + WebSocket Integration', () => {
 ```typescript
 // tests/integration/upload/file-upload.test.ts
 import { describe, test, expect, beforeAll, afterAll } from 'bun:test';
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 import { join } from 'path';
 
 describe('File Upload Integration', () => {
@@ -902,7 +902,7 @@ describe('File Upload Integration', () => {
   let baseUrl: string;
 
   beforeAll(async () => {
-    const app = createServer(ServerProtocol.HTTP);
+    const app = server.http();
     
     const uploadedFiles: any[] = [];
 

@@ -13,9 +13,9 @@ gRPC offers several advantages:
 ## Creating a gRPC Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.GRPC);
+const app = server.grpc();
 
 app.addService({
   name: "UserService",

@@ -7,9 +7,9 @@ This guide covers comprehensive error handling strategies in Verb, including bui
 ### Basic Error Handler
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Routes that might throw errors
 app.get("/error", (req, res) => {
@@ -32,7 +32,7 @@ app.listen(3000);
 ### Advanced Error Handler
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Advanced global error handler
 app.use((error, req, res, next) => {
@@ -140,7 +140,7 @@ class InternalServerError extends HttpError {
 ### Using Custom Error Classes
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/users/:id", async (req, res) => {
   const { id } = req.params;
@@ -184,7 +184,7 @@ app.post("/users", async (req, res) => {
 ### Async Route Handlers
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Async wrapper to catch promise rejections
 const asyncHandler = (fn) => {
@@ -213,7 +213,7 @@ app.get("/manual-async", async (req, res, next) => {
 ### Promise Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/database-operation", (req, res, next) => {
   fetchDataFromDatabase()
@@ -242,7 +242,7 @@ app.get("/database-operation-better", async (req, res, next) => {
 ### Input Validation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const validateUser = (userData) => {
   const errors = [];
@@ -325,7 +325,7 @@ app.post("/users", validateSchema(userSchema), (req, res) => {
 ### Custom 404 Handler
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Regular routes
 app.get("/", (req, res) => {
@@ -353,7 +353,7 @@ app.use((req, res) => {
 ### Dynamic 404 Suggestions
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Track registered routes for suggestions
 const registeredRoutes = new Set();
@@ -396,7 +396,7 @@ app.use((req, res) => {
 ### Structured Logging
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const logger = {
   error: (message, meta = {}) => {
@@ -463,7 +463,7 @@ app.use((error, req, res, next) => {
 ### Error Monitoring Integration
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Example integration with error monitoring service
 const sendToMonitoring = (error, req) => {
@@ -625,7 +625,7 @@ app.get("/external-api", async (req, res, next) => {
 ### Graceful Degradation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/user-profile/:id", async (req, res, next) => {
   try {
@@ -673,10 +673,10 @@ app.get("/user-profile/:id", async (req, res, next) => {
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("handles validation errors", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.post("/users", (req, res) => {
     if (!req.body.name) {
@@ -714,7 +714,7 @@ test("handles validation errors", async () => {
 });
 
 test("handles 404 errors", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/", (req, res) => {
     res.json({ message: "home" });

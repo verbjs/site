@@ -16,9 +16,9 @@ Performance optimization areas:
 ### Memory Caching
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Simple in-memory cache
 class MemoryCache {

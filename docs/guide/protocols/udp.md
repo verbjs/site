@@ -13,9 +13,9 @@ UDP characteristics:
 ## Creating a UDP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.UDP);
+const app = server.udp();
 
 app.onMessage((message, remoteInfo) => {
   console.log(`Received: ${message} from ${remoteInfo.address}:${remoteInfo.port}`);

@@ -73,7 +73,7 @@ export interface Comment {
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { cors, json, rateLimit, helmet } from "verb/middleware";
 import { authRouter } from "./routes/auth";
 import { postsRouter } from "./routes/posts";
@@ -82,7 +82,7 @@ import { commentsRouter } from "./routes/comments";
 import { errorHandler } from "./middleware/errorHandler";
 import { logger } from "./middleware/logger";
 
-const app = createServer();
+const app = server.http();
 
 // Middleware
 app.use(helmet()); // Security headers
@@ -141,7 +141,7 @@ console.log(`🚀 Blog API server running on port ${port}`);
 
 ```typescript
 // routes/auth.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { hash, compare } from "bcryptjs";
 import { sign, verify } from "jsonwebtoken";
 import { z } from "zod";
@@ -149,7 +149,7 @@ import { validate } from "../middleware/validation";
 import { asyncHandler } from "../middleware/asyncHandler";
 import { UserService } from "../services/UserService";
 
-const authRouter = createServer();
+const authRouter = server.http();
 
 // Validation schemas
 const registerSchema = z.object({
@@ -317,7 +317,7 @@ export { authRouter };
 
 ```typescript
 // routes/posts.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { z } from "zod";
 import { validate } from "../middleware/validation";
 import { authenticate, authorize } from "../middleware/auth";
@@ -325,7 +325,7 @@ import { asyncHandler } from "../middleware/asyncHandler";
 import { PostService } from "../services/PostService";
 import { slugify } from "../utils/slugify";
 
-const postsRouter = createServer();
+const postsRouter = server.http();
 
 // Validation schemas
 const createPostSchema = z.object({
@@ -541,7 +541,7 @@ export { postsRouter };
 
 ```typescript
 // routes/comments.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { z } from "zod";
 import { validate } from "../middleware/validation";
 import { authenticate } from "../middleware/auth";
@@ -549,7 +549,7 @@ import { asyncHandler } from "../middleware/asyncHandler";
 import { CommentService } from "../services/CommentService";
 import { PostService } from "../services/PostService";
 
-const commentsRouter = createServer();
+const commentsRouter = server.http();
 
 // Validation schemas
 const createCommentSchema = z.object({

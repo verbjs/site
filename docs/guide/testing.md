@@ -17,7 +17,7 @@ Testing approaches:
 
 ```typescript
 import { test, expect, describe, beforeAll, afterAll } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 describe("Verb Server Tests", () => {
   let app;
@@ -76,7 +76,7 @@ describe("Verb Server Tests", () => {
 ```typescript
 describe("Middleware Tests", () => {
   test("authentication middleware", async () => {
-    const app = createServer();
+    const app = server.http();
     
     const authMiddleware = (req, res, next) => {
       const token = req.headers.get("authorization");
@@ -108,7 +108,7 @@ describe("Middleware Tests", () => {
   });
   
   test("error handling middleware", async () => {
-    const app = createServer();
+    const app = server.http();
     
     app.get("/error", (req, res) => {
       throw new Error("Test error");
@@ -554,7 +554,7 @@ describe("Benchmark Tests", () => {
   });
   
   benchmark("HTTP request handling", async () => {
-    const app = createServer();
+    const app = server.http();
     app.get("/test", (req, res) => res.json({ ok: true }));
     
     const handler = app.createFetchHandler();
@@ -816,7 +816,7 @@ describe("Mock Tests", () => {
 // Test helper functions
 export class TestHelpers {
   static createTestServer(routes = {}) {
-    const app = createServer();
+    const app = server.http();
     
     Object.entries(routes).forEach(([path, handler]) => {
       if (typeof handler === "function") {

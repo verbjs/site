@@ -227,9 +227,9 @@ vercel
 
 ```typescript
 // src/server.ts - Vercel optimized
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Your routes here
 app.get('/api/health', async (req, res) => {
@@ -297,10 +297,10 @@ custom:
 
 ```typescript
 // src/lambda.ts
-import { createServer, ServerProtocol } from 'verb';
+import { server } from 'verb';
 import type { APIGatewayProxyEvent, APIGatewayProxyResult, Context } from 'aws-lambda';
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Your routes
 app.get('/health', async (req, res) => {

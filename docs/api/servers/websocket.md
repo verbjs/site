@@ -7,9 +7,9 @@ API reference for creating real-time WebSocket servers with connection managemen
 ### Basic WebSocket Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.withOptions({
   port: 3000,
@@ -37,9 +37,9 @@ console.log("WebSocket server running on ws://localhost:3000");
 ### HTTP + WebSocket Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.withOptions({
   port: 3000,

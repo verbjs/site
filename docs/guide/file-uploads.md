@@ -14,9 +14,9 @@ File upload features:
 ## Basic File Upload
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Enable multipart form handling
 app.use(middleware.multipart({

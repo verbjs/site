@@ -7,9 +7,9 @@ API reference for creating UDP (User Datagram Protocol) servers for connectionle
 ### Basic UDP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.UDP);
+const app = server.udp();
 
 app.withOptions({
   port: 8080,
@@ -40,7 +40,7 @@ app.listen(8080);
 ### UDP Server with Message Routing
 
 ```typescript
-const app = createServer(ServerProtocol.UDP);
+const app = server.udp();
 
 // Define message handlers
 const messageHandlers = {

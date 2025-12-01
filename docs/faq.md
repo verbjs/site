@@ -89,10 +89,10 @@ app.get("/api/data", asyncHandler(async (req, res) => {
 Verb supports Express-compatible middleware:
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import { cors, json, rateLimit } from "verb/middleware";
 
-const app = createServer();
+const app = server.http();
 
 // Built-in middleware
 app.use(json());
@@ -178,12 +178,12 @@ Yes! You can run different protocols on different ports:
 
 ```typescript
 // HTTP API on port 3000
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 httpServer.get("/api/*", apiRoutes);
 await httpServer.listen(3000);
 
 // WebSocket on port 3001
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 wsServer.on("connection", handleWebSocket);
 await wsServer.listen(3001);
 ```
@@ -191,9 +191,9 @@ await wsServer.listen(3001);
 ### How do I handle WebSocket connections?
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.on("connection", (ws, req) => {
   console.log("Client connected");
@@ -279,7 +279,7 @@ const secret = process.env.JWT_SECRET;
 ### How do I handle graceful shutdowns?
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Graceful shutdown handler
 const gracefulShutdown = async (signal) => {
@@ -303,9 +303,9 @@ No! Bun includes TypeScript support out of the box. Just use `.ts` files:
 
 ```typescript
 // server.ts - works immediately
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 app.listen(3000);
 ```
 
@@ -389,8 +389,8 @@ Check your `package.json`:
 ### How do I migrate from Express?
 
 1. **Install Verb**: `bun add verb`
-2. **Replace imports**: `import { createServer } from "verb"`
-3. **Update server creation**: `const app = createServer()`
+2. **Replace imports**: `import { server } from "verb"`
+3. **Update server creation**: `const app = server.http()`
 4. **Test routes**: Most Express middleware works as-is
 5. **Optimize gradually**: Add multi-protocol features over time
 
@@ -402,9 +402,9 @@ Most Express middleware works with Verb:
 
 ```typescript
 import express from "express";
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Express middleware usually works
 app.use(express.json());

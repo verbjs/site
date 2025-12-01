@@ -43,9 +43,9 @@ console.log("Protocol Gateway running on port 8080");
 ### Multi-Protocol Server
 
 ```typescript
-import { createServer, ProtocolGateway } from "verb";
+import { server, ProtocolGateway } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Create gateway instance
 const gateway = new ProtocolGateway({

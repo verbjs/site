@@ -8,11 +8,11 @@ Welcome to the Verb API reference. This section provides comprehensive documenta
 Create a new server instance with optional protocol specification.
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);  // HTTP explicit
-const httpsApp = createServer(ServerProtocol.HTTPS);
-const wsApp = createServer(ServerProtocol.WEBSOCKET);
+const app = server.http();  // HTTP explicit
+const httpsApp = server.https();
+const wsApp = server.websocket();
 ```
 
 ### ServerProtocol
@@ -273,7 +273,7 @@ import {
   type ProtocolGateway 
 } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Fully typed handler
 app.get("/typed", (req: Request, res: Response) => {
@@ -288,18 +288,18 @@ Quick examples for common use cases:
 
 ```typescript
 // Basic HTTP server
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 app.get("/", (req, res) => res.json({ hello: "world" }));
 app.listen(3000);
 
 // HTTPS server with TLS
-const httpsApp = createServer(ServerProtocol.HTTPS);
+const httpsApp = server.https();
 httpsApp.withTLS({ cert: certFile, key: keyFile });
 httpsApp.get("/", (req, res) => res.json({ secure: true }));
 httpsApp.listen(443);
 
 // WebSocket server
-const wsApp = createServer(ServerProtocol.WEBSOCKET);
+const wsApp = server.websocket();
 wsApp.websocket({
   open: (ws) => ws.send("Connected"),
   message: (ws, msg) => ws.send(`Echo: ${msg}`)

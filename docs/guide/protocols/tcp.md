@@ -13,9 +13,9 @@ TCP provides:
 ## Creating a TCP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.TCP);
+const app = server.tcp();
 
 app.onConnection((socket) => {
   console.log(`Client connected: ${socket.remoteAddress}:${socket.remotePort}`);

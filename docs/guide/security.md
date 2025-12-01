@@ -17,10 +17,10 @@ Security features include:
 ### JWT Authentication
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 import jwt from "jsonwebtoken";
 
-const app = createServer();
+const app = server.http();
 const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key";
 
 // Login endpoint

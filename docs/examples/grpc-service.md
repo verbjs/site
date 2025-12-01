@@ -182,13 +182,13 @@ message ProductSyncResponse {
 
 ```typescript
 // src/server.ts
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 import { ProductService } from "./services/ProductService";
 import { authMiddleware } from "./middleware/auth";
 import { loggingMiddleware } from "./middleware/logging";
 import { validationMiddleware } from "./middleware/validation";
 
-const app = createServer(ServerProtocol.GRPC);
+const app = server.grpc();
 
 app.withOptions({
   port: 50051,

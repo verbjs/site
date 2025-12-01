@@ -14,8 +14,8 @@ Comprehensive guide to understanding and resolving Verb framework error messages
 const server = createServer("HTTP" as any); // Invalid type
 
 // ✅ Correct
-import { createServer, ServerProtocol } from "verb";
-const server = createServer(ServerProtocol.HTTP);
+import { server } from "verb";
+const server = server.http();
 ```
 
 **Solution:** Use the `ServerProtocol` enum for type safety.
@@ -25,7 +25,7 @@ const server = createServer(ServerProtocol.HTTP);
 
 ```typescript
 // Check for port conflicts
-const server = createServer();
+const app = server.http();
 try {
   await server.listen(3000);
 } catch (error) {
@@ -110,7 +110,7 @@ app.get("/users/:id/posts/:postId", handler); // Multiple params
 
 ```typescript
 // Server-side debugging
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 
 wsServer.on("upgrade", (request, socket, head) => {
   console.log("Upgrade headers:", request.headers);
@@ -138,7 +138,7 @@ const ws = new WebSocket("ws://localhost:3000", {
 
 ```typescript
 // ✅ Configure message size limits
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 wsServer.configure({
   maxPayload: 16 * 1024 * 1024, // 16MB
   compression: true // Enable compression for large messages
@@ -154,10 +154,10 @@ wsServer.configure({
 // ✅ HTTP/2 server with fallback
 const createHttp2WithFallback = () => {
   try {
-    return createServer(ServerProtocol.HTTP2);
+    return server.http2();
   } catch (error) {
     console.warn("HTTP/2 not supported, falling back to HTTP/1.1");
-    return createServer(ServerProtocol.HTTP);
+    return server.http();
   }
 };
 ```
@@ -267,9 +267,9 @@ const connectWithRetry = async (maxRetries = 3) => {
 ### Global Error Handler
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Global error handling middleware
 app.use((error, req, res, next) => {

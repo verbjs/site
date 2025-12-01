@@ -35,7 +35,7 @@ bun install uuid bcryptjs jsonwebtoken
 
 ```typescript
 // server.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { cors, json, staticFiles } from "verb/middleware";
 import { uploadRouter } from "./src/routes/upload";
 import { fileRouter } from "./src/routes/files";
@@ -43,7 +43,7 @@ import { authRouter } from "./src/routes/auth";
 import { FileStorage } from "./src/services/FileStorage";
 import { ImageProcessor } from "./src/services/ImageProcessor";
 
-const app = createServer();
+const app = server.http();
 
 // Initialize services
 const fileStorage = new FileStorage();
@@ -92,7 +92,7 @@ console.log(`🚀 File Upload Service running on port ${port}`);
 
 ```typescript
 // src/routes/upload.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { multer } from "verb/middleware";
 import { authenticate } from "../middleware/auth";
 import { validateFile } from "../middleware/validation";
@@ -100,7 +100,7 @@ import { FileService } from "../services/FileService";
 import { ImageProcessor } from "../services/ImageProcessor";
 import { asyncHandler } from "../middleware/asyncHandler";
 
-const uploadRouter = createServer();
+const uploadRouter = server.http();
 
 // Configure multer for different upload types
 const storage = multer.diskStorage({
@@ -408,13 +408,13 @@ export { uploadRouter };
 
 ```typescript
 // src/routes/files.ts
-import { createServer } from "verb";
+import { server } from "verb";
 import { authenticate } from "../middleware/auth";
 import { FileService } from "../services/FileService";
 import { ImageProcessor } from "../services/ImageProcessor";
 import { asyncHandler } from "../middleware/asyncHandler";
 
-const fileRouter = createServer();
+const fileRouter = server.http();
 
 // Get user's files
 fileRouter.get("/",

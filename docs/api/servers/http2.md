@@ -7,9 +7,9 @@ API reference for creating HTTP/2 servers with multiplexing, server push, and ad
 ### Basic HTTP/2 Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP2);
+const app = server.http2();
 
 app.withOptions({
   port: 443,
@@ -36,7 +36,7 @@ console.log("HTTP/2 server running on https://localhost:443");
 ### HTTP/2 with HTTP/1.1 Fallback
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP2);
+const app = server.http2();
 
 app.withOptions({
   port: 443,

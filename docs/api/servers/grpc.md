@@ -7,9 +7,9 @@ API reference for creating high-performance gRPC servers with Protocol Buffers, 
 ### Basic gRPC Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.GRPC);
+const app = server.grpc();
 
 app.withOptions({
   port: 50051,

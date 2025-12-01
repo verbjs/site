@@ -891,10 +891,10 @@ export const endpointRateLimit = (options: {
 ### Basic API Rate Limiting
 
 ```typescript
-import { createServer } from 'verb';
+import { server } from 'verb';
 import { rateLimit, distributedRateLimit } from './middleware/rate-limiting';
 
-const app = createServer();
+const app = server.http();
 
 // Global rate limiting
 app.use(rateLimit({

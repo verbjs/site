@@ -15,9 +15,9 @@ This basic HTTP server example covers:
 ## Complete Code
 
 ```typescript
-import { createServer, middleware, ServerProtocol } from "verb";
+import { server, middleware, ServerProtocol } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Built-in middleware
 app.use(middleware.json());
@@ -188,9 +188,9 @@ console.log("  GET  /error (demo error handling)");
 ### 1. Server Creation
 
 ```typescript
-import { createServer, middleware, ServerProtocol } from "verb";
+import { server, middleware, ServerProtocol } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 ```
 
 Create a basic HTTP server using the default protocol (HTTP).

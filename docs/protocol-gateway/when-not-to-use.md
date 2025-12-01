@@ -47,10 +47,10 @@ class OverEngineeredCRUDAPI {
 
 ```typescript
 // DO: Use simple HTTP for straightforward CRUD operations
-import { createServer } from 'verb';
+import { server } from 'verb';
 
 class SimpleCRUDAPI {
-  private app = createServer(); // Just HTTP
+  private app = server.http(); // Just HTTP
   
   constructor() {
     this.app.get('/users', async (req, res) => {
@@ -186,7 +186,7 @@ class LowTrafficApp {
   
   // ✅ Simple is better
   setupSimpleHTTP() {
-    const app = createServer(); // 8-12MB memory
+    const app = server.http(); // 8-12MB memory
     // Easy to debug, monitor, and maintain
     // Performance is already excellent for low traffic
   }

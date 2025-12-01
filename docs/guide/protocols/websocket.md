@@ -17,9 +17,9 @@ WebSocket provides full-duplex communication channels over a single TCP connecti
 ### Creating a WebSocket Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // HTTP routes still work
 app.get("/", (req, res) => {
@@ -61,9 +61,9 @@ app.listen(3000);
 ### WebSocket Secure (WSS)
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKETS);
+const app = server.websockets();
 
 app.websocket({
   open: (ws) => {
@@ -89,7 +89,7 @@ app.listen(443);
 ### Advanced Configuration
 
 ```typescript
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.websocket({
   // Connection opened
@@ -146,7 +146,7 @@ app.websocket({
 ### Configuration Options
 
 ```typescript
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.websocket({
   // Basic handlers
@@ -176,9 +176,9 @@ app.websocket({
 ### Chat Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // Store active connections
 const connections = new Set();
@@ -315,9 +315,9 @@ console.log("Chat server running on http://localhost:3000");
 ### Multi-room Chat Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // Store connections and rooms
 const connections = new Map(); // ws -> { userId, username, room }
@@ -457,9 +457,9 @@ app.listen(3000);
 ### Real-time Data Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // Store subscribers
 const subscribers = new Map(); // ws -> { topics: Set }
@@ -591,9 +591,9 @@ app.listen(3000);
 ### Authenticated WebSocket
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // Store authenticated connections
 const authenticatedConnections = new Map();
@@ -744,7 +744,7 @@ app.listen(3000);
 ### Connection Error Handling
 
 ```typescript
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.websocket({
   open: (ws) => {
@@ -814,7 +814,7 @@ setInterval(() => {
 ### Connection Management
 
 ```typescript
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 // Connection pool management
 const maxConnections = 10000;
@@ -873,10 +873,10 @@ setInterval(() => {
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 test("WebSocket connection", async () => {
-  const app = createServer(ServerProtocol.WEBSOCKET);
+  const app = server.websocket();
   
   let messageReceived = false;
   

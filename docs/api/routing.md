@@ -426,7 +426,7 @@ app.use("/api", apiRouter);
 import { test, expect } from "bun:test";
 
 test("route handling", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/test", (req, res) => {
     res.json({ success: true });

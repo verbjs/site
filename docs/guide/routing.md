@@ -9,9 +9,9 @@ This guide covers Verb's powerful routing system, including traditional routing 
 Verb supports all standard HTTP methods:
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Basic routes
 app.get("/", (req, res) => {
@@ -48,7 +48,7 @@ app.options("/users", (req, res) => {
 #### Path Parameters
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Single parameter
 app.get("/users/:id", (req, res) => {
@@ -72,7 +72,7 @@ app.get("/posts/:year/:month?", (req, res) => {
 #### Query Parameters
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/search", (req, res) => {
   const { q, page, limit } = req.query;
@@ -91,7 +91,7 @@ app.get("/search", (req, res) => {
 #### Wildcards
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Wildcard routes
 app.get("/files/*", (req, res) => {
@@ -109,7 +109,7 @@ app.get("/api/*/users", (req, res) => {
 #### Regular Expressions
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // RegExp patterns
 app.get(/.*fly$/, (req, res) => {
@@ -128,7 +128,7 @@ app.get("/users/:id(\\d+)", (req, res) => {
 Define multiple paths for the same handler:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Multiple paths
 app.get(["/home", "/", "/index"], (req, res) => {
@@ -146,7 +146,7 @@ app.get(["/user/:id", "/profile/:id"], (req, res) => {
 Chain multiple handlers for the same route:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.route("/users/:id")
   .get((req, res) => {
@@ -168,7 +168,7 @@ app.route("/users/:id")
 ### Route-Specific Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Authentication middleware
 const authenticate = (req, res, next) => {
@@ -199,7 +199,7 @@ app.get("/api/users", logger, authenticate, (req, res) => {
 ### Path-Based Middleware
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Apply middleware to all routes starting with /api
 app.use("/api", (req, res, next) => {
@@ -219,8 +219,8 @@ app.use("/admin", authenticate, (req, res, next) => {
 Mount sub-applications at specific paths:
 
 ```typescript
-const app = createServer();
-const apiApp = createServer();
+const app = server.http();
+const apiApp = server.http();
 
 // API routes
 apiApp.get("/users", (req, res) => {
@@ -260,7 +260,7 @@ userRouter.post("/", (req, res) => {
 });
 
 // Use router in main app
-const app = createServer();
+const app = server.http();
 app.use("/users", userRouter);
 ```
 
@@ -271,9 +271,9 @@ Verb supports Bun's native routing system for fullstack applications:
 ### Basic Native Routes
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   // Direct Response objects
@@ -301,11 +301,11 @@ app.withRoutes({
 ### HTML Imports
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import homepage from "./index.html";
 import dashboard from "./dashboard.html";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   // HTML files with automatic bundling
@@ -317,7 +317,7 @@ app.withRoutes({
 ### API Routes with Methods
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/users": {
@@ -349,7 +349,7 @@ app.withRoutes({
 ### Parameterized Native Routes
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   // Single parameter
@@ -391,7 +391,7 @@ app.withRoutes({
 ### Mixed Traditional and Native Routes
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Traditional routes (processed by Verb)
 app.get("/api/legacy", (req, res) => {
@@ -419,7 +419,7 @@ app.get("/api/mixed", (req, res) => {
 Routes are matched in the order they're defined:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // More specific routes first
 app.get("/users/admin", (req, res) => {
@@ -437,7 +437,7 @@ app.get("/users/:id", (req, res) => {
 ### Case Sensitivity
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Case sensitive routing (default: false)
 app.set("case sensitive routing", true);
@@ -453,7 +453,7 @@ app.get("/Users", (req, res) => {
 ### Strict Routing
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Strict routing (default: false)
 app.set("strict routing", true);
@@ -471,7 +471,7 @@ app.get("/users", (req, res) => {
 ### Show Routes
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/", (req, res) => res.json({ message: "Home" }));
 app.get("/users/:id", (req, res) => res.json({ id: req.params.id }));
@@ -497,7 +497,7 @@ app.listen(3000);
 ### Route Introspection
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Access router for introspection
 const routes = app.router.getRoutes();
@@ -513,7 +513,7 @@ console.log("Matched route:", route);
 ### Dynamic Route Loading
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Load routes from directory
 const routeFiles = await Bun.glob("./routes/*.ts");
@@ -526,7 +526,7 @@ for (const file of routeFiles) {
 ### Route Versioning
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Version-specific routes
 app.use("/api/v1", (req, res, next) => {
@@ -552,7 +552,7 @@ app.get("/api/v2/users", (req, res) => {
 ### Route Caching
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Enable route caching for better performance
 app.withOptions({
@@ -571,7 +571,7 @@ app.withOptions({
 ### Route-Level Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/error", (req, res) => {
   try {
@@ -596,7 +596,7 @@ app.get("/async-error", async (req, res) => {
 ### Global Error Handler
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.get("/throw", (req, res) => {
   throw new Error("Intentional error");

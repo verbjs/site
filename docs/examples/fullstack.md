@@ -37,12 +37,12 @@ fullstack-app/
 ### Main Server (src/server.ts)
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import homepage from "./frontend/index.html";
 import { userHandlers } from "./api/users";
 import { setupWebSocket } from "./api/websocket";
 
-const app = createServer();
+const app = server.http();
 
 // Configure Bun native routes
 app.withRoutes({

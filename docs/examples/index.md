@@ -10,9 +10,9 @@ Perfect for beginners to understand the basics.
 A simple HTTP server with routing, middleware, and basic error handling.
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello Verb!" });
@@ -41,10 +41,10 @@ Build complete applications with frontend and backend.
 Complete fullstack app using Bun's native routing with HTML imports, React, and automatic bundling.
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import homepage from "./index.html";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -62,7 +62,7 @@ Examples showcasing WebSocket capabilities.
 Real-time chat application with rooms, user management, and message broadcasting. For now, see the [WebSocket Protocol Guide](/guide/protocols/websocket).
 
 ```typescript
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 
 wsServer.websocket({
   open: (ws) => {
@@ -98,7 +98,7 @@ High-performance service communication.
 Complete gRPC service with multiple methods, streaming, and error handling. For now, see the [gRPC Protocol Guide](/guide/protocols/grpc).
 
 ```typescript
-const grpcServer = createServer(ServerProtocol.GRPC);
+const grpcServer = server.grpc();
 
 grpcServer.addService({
   name: "UserService",
@@ -281,9 +281,9 @@ We welcome community contributions! To add your example:
 
 ### HTTP API Template
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.use(middleware.json());
 app.use(middleware.cors());
@@ -297,9 +297,9 @@ app.listen(3000);
 
 ### WebSocket Server Template
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.WEBSOCKET);
+const app = server.websocket();
 
 app.websocket({
   open: (ws) => console.log("Client connected"),
@@ -312,9 +312,9 @@ app.listen(3001);
 
 ### gRPC Service Template
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.GRPC);
+const app = server.grpc();
 
 app.addService({
   name: "ExampleService",

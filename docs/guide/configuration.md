@@ -9,9 +9,9 @@ Verb provides a flexible configuration system similar to Express.js for managing
 ### Basic Configuration
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Set application settings
 app.set("trust proxy", true);
@@ -47,7 +47,7 @@ const defaultSettings = {
 Store application-wide variables:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Set locals
 app.locals.title = "My App";
@@ -69,7 +69,7 @@ app.get("/", (req, res) => {
 Configure server behavior with `withOptions()`:
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withOptions({
   port: 3000,
@@ -156,7 +156,7 @@ const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
 const debug = process.env.DEBUG === "true";
 
-const app = createServer();
+const app = server.http();
 
 app.withOptions({
   port: Number(port),
@@ -170,13 +170,13 @@ app.withOptions({
 ### HTTP/HTTPS Configuration
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP server
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 
 // HTTPS server with TLS options
-const httpsServer = createServer(ServerProtocol.HTTPS);
+const httpsServer = server.https();
 httpsServer.withOptions({
   // TLS options would go here
   // (implementation depends on Bun's TLS support)
@@ -186,7 +186,7 @@ httpsServer.withOptions({
 ### WebSocket Configuration
 
 ```typescript
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 
 wsServer.websocket({
   maxPayloadLength: 16 * 1024 * 1024, // 16MB
@@ -210,7 +210,7 @@ wsServer.websocket({
 ### gRPC Configuration
 
 ```typescript
-const grpcServer = createServer(ServerProtocol.GRPC);
+const grpcServer = server.grpc();
 
 grpcServer.withOptions({
   port: 50051,
@@ -228,9 +228,9 @@ grpcServer.withOptions({
 ### Global Middleware
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Built-in middleware
 app.use(middleware.json({ limit: "10mb" }));
@@ -268,10 +268,10 @@ app.use("/static", middleware.staticFiles("public", {
 Configure fullstack applications with Bun's native routing:
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import homepage from "./index.html";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -294,7 +294,7 @@ app.withOptions({
 ## Error Handling Configuration
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Custom error handler
 app.use((error, req, res, next) => {
@@ -315,7 +315,7 @@ app.use((error, req, res, next) => {
 ### Route Precompilation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Enable route precompilation for better performance
 app.withOptions({
@@ -328,7 +328,7 @@ app.withOptions({
 ### Memory Management
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Configure memory limits
 app.withOptions({
@@ -391,7 +391,7 @@ app.use(middleware.securityHeaders({
 ### Development Configuration
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 if (app.getSetting("env") === "development") {
   app.withOptions({
@@ -411,7 +411,7 @@ if (app.getSetting("env") === "development") {
 ### Production Configuration
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 if (app.getSetting("env") === "production") {
   // Production optimizations
@@ -435,9 +435,9 @@ if (app.getSetting("env") === "production") {
 ### Basic Web Server
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // Application settings
 app.set("trust proxy", process.env.TRUST_PROXY === "true");
@@ -461,9 +461,9 @@ app.listen();
 ### API Server
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 // API configuration
 app.set("json spaces", 2);

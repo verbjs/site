@@ -26,7 +26,7 @@ Addressing common concerns and questions about adopting Bun for production appli
 
 ```typescript
 // Example: Robust error handling for production
-const server = createServer();
+const app = server.http();
 
 server.use((error, req, res, next) => {
   // Log to monitoring service
@@ -117,9 +117,9 @@ import { file } from "bun"; // ✅ Better than fs.readFile
 ### Phase 1: Proof of Concept (1-2 weeks)
 ```typescript
 // Start with a simple API endpoint
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.get("/health", (req, res) => {
   res.json({ status: "ok", runtime: "bun" });

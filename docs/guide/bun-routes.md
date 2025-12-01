@@ -16,9 +16,9 @@ Bun's native routing system provides powerful features for fullstack application
 ### Basic Setup
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": new Response("Hello World", {
@@ -32,11 +32,11 @@ app.listen(3000);
 ### HTML Imports
 
 ```typescript
-import { createServer } from "verb";
+import { server } from "verb";
 import homepage from "./index.html";
 import dashboard from "./dashboard.html";
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -120,7 +120,7 @@ if (document.readyState === 'loading') {
 ### Direct Response Objects
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": new Response("Hello World", {
@@ -145,7 +145,7 @@ app.withRoutes({
 ### Single Handler Functions
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/time": (req) => {
@@ -165,7 +165,7 @@ app.withRoutes({
 ### HTTP Method Objects
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/users": {
@@ -200,7 +200,7 @@ app.withRoutes({
 ### Single Parameters
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/users/:id": async (req) => {
@@ -225,7 +225,7 @@ app.withRoutes({
 ### Multiple Parameters
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/users/:userId/posts/:postId": async (req) => {
@@ -245,7 +245,7 @@ app.withRoutes({
 ### Parameters with HTTP Methods
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/posts/:id": {
@@ -276,7 +276,7 @@ app.withRoutes({
 ### Request Object
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/request-info": async (req) => {
@@ -304,7 +304,7 @@ app.withRoutes({
 ### Request Body Parsing
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/data": {
@@ -334,7 +334,7 @@ app.withRoutes({
 ### JSON Responses
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/users": {
@@ -362,7 +362,7 @@ app.withRoutes({
 ### Custom Headers
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/download": async (req) => {
@@ -382,7 +382,7 @@ app.withRoutes({
 ### Stream Responses
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/stream": async (req) => {
@@ -416,7 +416,7 @@ app.withRoutes({
 ### Hot Module Reloading
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -436,7 +436,7 @@ app.listen(3000);
 ### Route Display
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -463,7 +463,7 @@ app.listen(3000);
 ### Traditional + Native Routes
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 // Traditional Verb routes
 app.get("/api/legacy", (req, res) => {
@@ -491,7 +491,7 @@ app.listen(3000);
 ### Static Files
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/": homepage,
@@ -517,7 +517,7 @@ app.withRoutes({
 ### Dynamic File Generation
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/export/csv": async (req) => {
@@ -551,7 +551,7 @@ app.withRoutes({
 ### Route-Level Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/users/:id": async (req) => {
@@ -581,7 +581,7 @@ app.withRoutes({
 ### Global Error Handling
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const handleError = (error: Error, req: Request) => {
   console.error("Route error:", error);
@@ -619,7 +619,7 @@ app.withRoutes({
 ### Caching
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const cache = new Map();
 
@@ -646,7 +646,7 @@ app.withRoutes({
 ### Compression
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/large-data": async (req) => {
@@ -679,7 +679,7 @@ interface CreateUserRequest {
   email: string;
 }
 
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/users": {
@@ -748,10 +748,10 @@ test("user route", async () => {
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("native routes integration", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.withRoutes({
     "/test": () => Response.json({ test: true })
@@ -776,7 +776,7 @@ test("native routes integration", async () => {
 ### API Versioning
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 app.withRoutes({
   "/api/v1/users": {
@@ -792,7 +792,7 @@ app.withRoutes({
 ### Authentication
 
 ```typescript
-const app = createServer();
+const app = server.http();
 
 const authenticate = async (req: Request) => {
   const token = req.headers.get("Authorization")?.replace("Bearer ", "");

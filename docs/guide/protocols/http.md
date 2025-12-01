@@ -7,12 +7,12 @@ This guide covers creating and configuring HTTP and HTTPS servers with Verb.
 ### Basic HTTP Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // Default HTTP server
-const app = createServer();
+const app = server.http();
 // or explicitly
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello HTTP!" });
@@ -25,7 +25,7 @@ console.log("HTTP server running on http://localhost:3000");
 ### HTTP Methods
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // GET request
 app.get("/users", (req, res) => {
@@ -73,7 +73,7 @@ app.options("/users", (req, res) => {
 ### Request Handling
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.post("/data", (req, res) => {
   // Request properties
@@ -97,7 +97,7 @@ app.post("/data", (req, res) => {
 ### Response Methods
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/response-examples", (req, res) => {
   // JSON response
@@ -151,7 +151,7 @@ app.get("/cookies", (req, res) => {
 ### File Operations
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/download", async (req, res) => {
   // File download
@@ -182,9 +182,9 @@ app.get("/file-stream", async (req, res) => {
 ### Basic HTTPS Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 app.get("/secure", (req, res) => {
   res.json({ 
@@ -211,7 +211,7 @@ console.log("HTTPS server running on https://localhost:443");
 ### TLS Configuration
 
 ```typescript
-const app = createServer(ServerProtocol.HTTPS);
+const app = server.https();
 
 // TLS options (conceptual - depends on Bun's TLS implementation)
 app.withOptions({
@@ -238,7 +238,7 @@ app.get("/", (req, res) => {
 ### Accept Headers
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/content", (req, res) => {
   const acceptsJSON = req.accepts("application/json");
@@ -261,7 +261,7 @@ app.get("/content", (req, res) => {
 ### Content Types
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/api/data", (req, res) => {
   const accepts = req.accepts(["json", "xml", "html"]);
@@ -290,9 +290,9 @@ app.get("/api/data", (req, res) => {
 ### Built-in Middleware
 
 ```typescript
-import { createServer, middleware } from "verb";
+import { server, middleware } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // JSON parsing
 app.use(middleware.json());
@@ -320,7 +320,7 @@ app.get("/", (req, res) => {
 ### Custom Middleware
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Logging middleware
 app.use((req, res, next) => {
@@ -351,7 +351,7 @@ app.use("/api", (req, res, next) => {
 ### Route-Level Error Handling
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/error", (req, res) => {
   try {
@@ -377,7 +377,7 @@ app.get("/async-error", async (req, res) => {
 ### Global Error Handler
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/throw", (req, res) => {
   throw new Error("Intentional error");
@@ -399,7 +399,7 @@ app.use((error, req, res, next) => {
 ### Body Validation
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.json());
 
@@ -430,7 +430,7 @@ app.post("/users", validateUser, (req, res) => {
 ### Query Parameter Validation
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/users", (req, res) => {
   const { page = 1, limit = 10 } = req.query;
@@ -458,7 +458,7 @@ app.get("/users", (req, res) => {
 ### Caching
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 const cache = new Map();
 
@@ -486,7 +486,7 @@ app.get("/expensive/:id", (req, res) => {
 ### Compression
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.compression({
   threshold: 1024, // Only compress responses > 1KB
@@ -506,7 +506,7 @@ app.get("/large-data", (req, res) => {
 ### Keep-Alive
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.withOptions({
   keepAlive: true,
@@ -524,7 +524,7 @@ app.get("/", (req, res) => {
 ### HTTPS Redirect
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Redirect HTTP to HTTPS
 app.use((req, res, next) => {
@@ -538,7 +538,7 @@ app.use((req, res, next) => {
 ### Security Headers
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.helmet({
   contentSecurityPolicy: {
@@ -560,7 +560,7 @@ app.use(middleware.helmet({
 ### Rate Limiting
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -574,7 +574,7 @@ app.use(middleware.rateLimit({
 ### Preparing for HTTP/2
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Use middleware that's HTTP/2 compatible
 app.use(middleware.compression());
@@ -586,7 +586,7 @@ app.get("/data", (req, res) => {
 });
 
 // The same routes will work with HTTP/2
-const http2App = createServer(ServerProtocol.HTTP2);
+const http2App = server.http2();
 // Copy routes or use shared router
 ```
 
@@ -596,10 +596,10 @@ const http2App = createServer(ServerProtocol.HTTP2);
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("HTTP server basic functionality", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/test", (req, res) => {
     res.json({ test: true });
@@ -620,7 +620,7 @@ test("HTTP server basic functionality", async () => {
 import { test, expect } from "bun:test";
 
 test("HTTP server integration", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.use(middleware.json());
   app.post("/users", (req, res) => {
@@ -658,7 +658,7 @@ test("HTTP server integration", async () => {
 ### RESTful API
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.json());
 app.use(middleware.cors());
@@ -693,7 +693,7 @@ app.delete("/api/users/:id", (req, res) => {
 ### File Upload Server
 
 ```typescript
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.use(middleware.multipart());
 

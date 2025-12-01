@@ -13,9 +13,9 @@ HTTP/2 provides significant performance improvements over HTTP/1.1:
 ## Creating an HTTP/2 Server
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP2);
+const app = server.http2();
 
 app.get("/", (req, res) => {
   res.json({ message: "HTTP/2 Server!" });
@@ -29,9 +29,9 @@ app.listen(3000);
 HTTP/2 typically requires HTTPS in browsers:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP2);
+const app = server.http2();
 
 app.withOptions({
   port: 3000,

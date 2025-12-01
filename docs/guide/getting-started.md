@@ -15,9 +15,9 @@ Create your server:
 
 ```typescript
 // server.ts
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -58,9 +58,9 @@ Let's create a simple HTTP server:
 
 ```typescript
 // server.ts
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello from Verb!" });
@@ -88,21 +88,21 @@ bun server.ts
 Verb supports multiple protocols. Specify the protocol when creating a server:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP Server (default)
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 // or explicitly
-const httpServer2 = createServer(ServerProtocol.HTTP);
+const httpServer2 = server.http();
 
 // HTTPS Server
-const httpsServer = createServer(ServerProtocol.HTTPS);
+const httpsServer = server.https();
 
 // HTTP/2 Server
-const http2Server = createServer(ServerProtocol.HTTP2);
+const http2Server = server.http2();
 
 // WebSocket Server
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 ```
 
 ## Basic Routing
@@ -110,9 +110,9 @@ const wsServer = createServer(ServerProtocol.WEBSOCKET);
 Verb supports standard HTTP methods:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // GET request
 app.get("/users", (req, res) => {
@@ -143,9 +143,9 @@ app.delete("/users/:id", (req, res) => {
 Add middleware to process requests:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 // Global middleware
 app.use((req, res, next) => {
@@ -179,9 +179,9 @@ app.get("/protected",
 Handle errors gracefully:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/error", (req, res) => {
   throw new Error("Something went wrong!");
@@ -202,9 +202,9 @@ app.use((error, req, res, next) => {
 Access request data and send responses:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.post("/data", (req, res) => {
   // Request data
@@ -228,17 +228,17 @@ app.post("/data", (req, res) => {
 Create servers for different protocols:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
 // HTTP Server
-const httpServer = createServer(ServerProtocol.HTTP);
+const httpServer = server.http();
 httpServer.get("/", (req, res) => {
   res.json({ protocol: "HTTP" });
 });
 httpServer.listen(3000);
 
 // WebSocket Server
-const wsServer = createServer(ServerProtocol.WEBSOCKET);
+const wsServer = server.websocket();
 wsServer.get("/", (req, res) => {
   res.json({ protocol: "WebSocket HTTP" });
 });
@@ -253,7 +253,7 @@ wsServer.websocket({
 wsServer.listen(3001);
 
 // gRPC Server
-const grpcServer = createServer(ServerProtocol.GRPC);
+const grpcServer = server.grpc();
 grpcServer.addMethod("UserService", {
   name: "GetUser",
   handler: async (request) => {
@@ -276,9 +276,9 @@ bun --hot server.ts
 Verb is built with TypeScript. Use types for better development experience:
 
 ```typescript
-import { createServer, ServerProtocol, Request, Response } from "verb";
+import { server, ServerProtocol, type Request, type Response } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.get("/typed", (req: Request, res: Response) => {
   // Full type safety
@@ -290,9 +290,9 @@ app.get("/typed", (req: Request, res: Response) => {
 Use Bun's built-in environment variable support:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 const port = process.env.PORT || 3000;
 const host = process.env.HOST || "localhost";
@@ -307,10 +307,10 @@ app.listen(port, host);
 Build fullstack applications with HTML imports and automatic bundling:
 
 ```typescript
-import { createServer, ServerProtocol } from "verb";
+import { server } from "verb";
 import homepage from "./index.html"; // HTML import
 
-const app = createServer(ServerProtocol.HTTP);
+const app = server.http();
 
 app.withRoutes({
   // Serve HTML with automatic bundling

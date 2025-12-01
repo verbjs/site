@@ -671,10 +671,10 @@ app.get("/large-response", (req, res) => {
 
 ```typescript
 import { test, expect } from "bun:test";
-import { createServer } from "verb";
+import { server } from "verb";
 
 test("request parameters", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/users/:id", (req, res) => {
     res.json({ id: req.params.id });
@@ -689,7 +689,7 @@ test("request parameters", async () => {
 });
 
 test("response status and headers", async () => {
-  const app = createServer();
+  const app = server.http();
   
   app.get("/test", (req, res) => {
     res.status(201)

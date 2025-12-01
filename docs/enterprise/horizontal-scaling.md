@@ -394,7 +394,7 @@ Outputs:
 ```typescript
 // Service discovery with Consul
 import Consul from 'consul';
-import { createServer } from 'verb';
+import { server } from 'verb';
 
 interface ServiceConfig {
   name: string;
@@ -1198,12 +1198,12 @@ export class AutoScalingMonitor {
 ### Complete Horizontal Scaling Setup
 
 ```typescript
-import { createServer } from 'verb';
+import { server } from 'verb';
 import { serviceDiscoveryMiddleware } from './middleware/service-discovery';
 import { distributedSessionMiddleware } from './middleware/session';
 import { DatabaseConnectionManager } from './database/connection-manager';
 
-const app = createServer();
+const app = server.http();
 
 // Service discovery setup
 const { discovery, registerSelf } = serviceDiscoveryMiddleware(
