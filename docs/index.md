@@ -10,7 +10,7 @@ hero:
       text: Get Started
       link: /guide/getting-started
     - theme: alt
-      text: View on GitHub
+      text: GitHub
       link: https://github.com/verbjs/verb
 
 features:
