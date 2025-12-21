@@ -618,7 +618,7 @@ app.post('/upload', async (req, res) => {
 
 ### Process Signal Handling
 ```typescript
-const app = new Verb();
+const app = server.http();
 
 // Track active connections for graceful shutdown
 const activeConnections = new Set();

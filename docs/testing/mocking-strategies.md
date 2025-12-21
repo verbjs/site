@@ -7,7 +7,7 @@ This guide covers comprehensive mocking strategies for testing applications buil
 ### Basic HTTP Mocking with Test Doubles
 
 ```typescript
-import { Verb } from 'verb';
+import { server } from 'verb';
 import { expect, test, beforeEach, afterEach } from 'bun:test';
 
 class MockVerbServer {
@@ -101,7 +101,7 @@ let app: Verb;
 
 beforeEach(() => {
   mockUserService = new MockUserService();
-  app = new Verb();
+  app = server.http();
   
   // Inject mock service
   app.get('/users/:id', async (req, res) => {
@@ -496,7 +496,7 @@ class VerbTestSuite {
   private sseClient: MockEventSource;
 
   constructor() {
-    this.app = new Verb();
+    this.app = server.http();
     this.setupMocks();
   }
 

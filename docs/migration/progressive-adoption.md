@@ -9,9 +9,9 @@ Start with one non-critical endpoint to test Verb integration.
 
 ```typescript
 // Add Verb alongside existing framework
-import { Verb } from 'verb';
+import { server } from 'verb';
 
-const verbApp = new Verb();
+const verbApp = server.http();
 
 // Migrate one simple endpoint
 verbApp.get('/api/v2/health', (req, res) => {
@@ -82,7 +82,7 @@ Complete migration and consolidation.
 
 ```typescript
 // Single application serving all routes
-const app = new Verb();
+const app = server.http();
 
 // All endpoints now use Verb
 app.get('/api/users', userController.getAll);

@@ -19,13 +19,12 @@ app.listen(3000, () => {
 
 ### Verb
 ```typescript
-import { Verb } from 'verb';
+import { server } from 'verb';
 
-const app = new Verb();
+const app = server.http();
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
-});
+app.listen(3000);
+console.log('Server running on port 3000');
 ```
 
 ## Basic Routes

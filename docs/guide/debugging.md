@@ -211,9 +211,9 @@ app.websocket('/ws/broadcast', {
 
 ### UDP Server Debugging
 ```typescript
-import { Verb } from 'verb';
+import { server } from 'verb';
 
-const app = new Verb();
+const app = server.http();
 
 app.udp(8080, {
   message: (buffer, rinfo) => {

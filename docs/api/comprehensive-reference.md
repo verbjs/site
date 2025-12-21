@@ -4,28 +4,30 @@ Complete reference for all Verb framework APIs with real-world usage examples.
 
 ## Core Application
 
-### `new Verb(options?)`
+### `server.http()`
 
-Creates a new Verb application instance.
+Creates a new HTTP server instance using the fluent API.
 
 ```typescript
-import { Verb } from 'verb';
+import { server } from 'verb';
 
 // Basic app
-const app = new Verb();
+const app = server.http();
 
 // With options
-const app = new Verb({
-  maxConnections: 1000,
-  timeout: 30000,
-  enableCompression: true
+const app = server.http();
+app.withOptions({
+  port: 3000,
+  hostname: 'localhost'
 });
 ```
 
-**Options:**
-- `maxConnections?: number` - Maximum concurrent connections (default: unlimited)
-- `timeout?: number` - Request timeout in milliseconds (default: 30000)
-- `enableCompression?: boolean` - Enable gzip compression (default: true)
+**Server methods:**
+- `server.http()` - Create HTTP server
+- `server.https()` - Create HTTPS server
+- `server.http2()` - Create HTTP/2 server
+- `server.websocket()` - Create WebSocket server
+- `server.grpc()` - Create gRPC server
 
 ### `app.listen(port, callback?)`
 

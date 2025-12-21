@@ -196,13 +196,13 @@ app.tcp(5432, {
 **Multi-Protocol Microservices:**
 ```typescript
 // User Service (HTTP)
-const userService = new Verb();
+const userService = server.http();
 userService.get('/users/:id', getUserHandler);
 userService.post('/users', createUserHandler);
 userService.listen(3001);
 
 // Notification Service (WebSocket + HTTP)
-const notificationService = new Verb();
+const notificationService = server.http();
 
 // HTTP endpoint for sending notifications
 notificationService.post('/notifications', sendNotificationHandler);
@@ -216,7 +216,7 @@ notificationService.websocket('/ws/notifications', {
 notificationService.listen(3002);
 
 // Metrics Service (UDP + HTTP)
-const metricsService = new Verb();
+const metricsService = server.http();
 
 // UDP for high-frequency metrics
 metricsService.udp(8125, {
@@ -278,7 +278,7 @@ app.udp(9999, {
 **Protocol Routing:**
 ```typescript
 // API Gateway with protocol routing
-const gateway = new Verb();
+const gateway = server.http();
 
 // HTTP API routing
 gateway.get('/api/v1/*', (req, res) => {
@@ -311,10 +311,9 @@ gateway.udp(8080, {
 **HTTP Optimization:**
 ```typescript
 // Connection pooling
-const httpService = new Verb({
-  keepAlive: true,
-  maxConnections: 1000,
-  timeout: 30000
+const httpService = server.http();
+httpService.withOptions({
+  port: 3000
 });
 
 // Response caching
