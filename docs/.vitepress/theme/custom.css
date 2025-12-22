@@ -1,0 +1,5 @@
+/* Ensure gradient text doesn't get clipped */
+.landing .hero h1 {
+  padding: 4px 0;
+  line-height: 1.2;
+}

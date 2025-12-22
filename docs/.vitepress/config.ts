@@ -1,33 +1,83 @@
 import { defineConfig } from 'vitepress'
 
-// https://vitepress.vuejs.org/config/app-configs
 export default defineConfig({
-  title: 'Verb',
+  title: 'Verb Ecosystem',
   description: 'A fast, modern server framework for Bun with multi-protocol support',
-  
+
   head: [
     ['link', { rel: 'icon', href: '/verb.png' }],
     ['meta', { name: 'theme-color', content: '#646cff' }],
     ['meta', { name: 'og:type', content: 'website' }],
     ['meta', { name: 'og:locale', content: 'en' }],
-    ['meta', { name: 'og:title', content: 'Verb | Multi-Protocol Server Framework' }],
+    ['meta', { name: 'og:title', content: 'Verb Ecosystem | Bun-First Development' }],
     ['meta', { name: 'og:site_name', content: 'Verb' }],
     ['meta', { name: 'og:image', content: '/verb.png' }],
-    ['meta', { name: 'og:url', content: 'https://verb.sh' }],
+    ['meta', { name: 'og:url', content: 'https://verb.codes' }],
   ],
 
   themeConfig: {
-    logo: '/verb.png',
-    
+    siteTitle: 'Verb Ecosystem',
     nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'API', link: '/api/' },
-      { text: 'Examples', link: '/examples/' },
-      { text: 'FAQ', link: '/faq' },
-      { text: 'GitHub', link: 'https://github.com/verbjs/verb' }
+      { text: 'Verb', link: '/verb/' },
+      { text: 'Hull', link: '/hull/' },
+      { text: 'Allow', link: '/allow/' },
+      { text: 'Hoist', link: '/hoist/' },
+      { text: 'GitHub', link: 'https://github.com/verbjs' }
     ],
 
     sidebar: {
+      '/verb/': [
+        {
+          text: 'Verb',
+          items: [
+            { text: 'Overview', link: '/verb/' },
+            { text: 'Getting Started', link: '/verb/getting-started' },
+            { text: 'HTTP Server', link: '/verb/http' },
+            { text: 'WebSocket', link: '/verb/websocket' },
+            { text: 'Middleware', link: '/verb/middleware' },
+            { text: 'Routing', link: '/verb/routing' },
+          ]
+        }
+      ],
+      '/hull/': [
+        {
+          text: 'Hull',
+          items: [
+            { text: 'Overview', link: '/hull/' },
+            { text: 'Getting Started', link: '/hull/getting-started' },
+            { text: 'Schema', link: '/hull/schema' },
+            { text: 'Queries', link: '/hull/queries' },
+            { text: 'Changesets', link: '/hull/changesets' },
+            { text: 'Migrations', link: '/hull/migrations' },
+          ]
+        }
+      ],
+      '/allow/': [
+        {
+          text: 'Allow',
+          items: [
+            { text: 'Overview', link: '/allow/' },
+            { text: 'Getting Started', link: '/allow/getting-started' },
+            { text: 'Password Auth', link: '/allow/passwords' },
+            { text: 'JWT Tokens', link: '/allow/jwt' },
+            { text: 'API Tokens', link: '/allow/api-tokens' },
+            { text: 'Middleware', link: '/allow/middleware' },
+          ]
+        }
+      ],
+      '/hoist/': [
+        {
+          text: 'Hoist',
+          items: [
+            { text: 'Overview', link: '/hoist/' },
+            { text: 'Getting Started', link: '/hoist/getting-started' },
+            { text: 'CLI', link: '/hoist/cli' },
+            { text: 'Deployments', link: '/hoist/deployments' },
+            { text: 'Databases', link: '/hoist/databases' },
+            { text: 'Storage', link: '/hoist/storage' },
+          ]
+        }
+      ],
       '/guide/': [
         {
           text: 'Introduction',
@@ -64,23 +114,6 @@ export default defineConfig({
             { text: 'Error Handling', link: '/guide/error-handling' },
             { text: 'Performance', link: '/guide/performance' },
             { text: 'Testing', link: '/guide/testing' }
-          ]
-        },
-        {
-          text: 'Bun Ecosystem',
-          items: [
-            { text: 'Bun Adoption Guide', link: '/guide/bun-adoption' },
-            { text: 'Bun vs Node.js', link: '/guide/bun-vs-nodejs' },
-            { text: 'Fallback Strategy', link: '/guide/fallback-strategy' },
-            { text: 'Cross-Runtime Compatibility', link: '/guide/cross-runtime-compatibility' }
-          ]
-        },
-        {
-          text: 'Reference',
-          items: [
-            { text: 'Error Messages', link: '/guide/error-messages' },
-            { text: 'FAQ', link: '/faq' },
-            { text: 'Glossary', link: '/glossary' }
           ]
         }
       ],
