@@ -7,7 +7,7 @@
 ## Installation
 
 ```bash
-bun add verb
+bun add @verb-js/verb
 ```
 
 ## Create a Server

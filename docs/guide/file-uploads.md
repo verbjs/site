@@ -385,6 +385,50 @@ app.get("/upload-status/:sessionId", (req, res) => {
 
 Upload to cloud storage:
 
+### Shelves (Verb Ecosystem)
+
+For Hoist users, Shelves provides S3-compatible storage:
+
+```typescript
+import { createStorage } from "@verb-js/hoist-sdk"
+
+const storage = createStorage({
+  endpoint: process.env.S3_ENDPOINT,
+  accessKey: process.env.S3_ACCESS_KEY_ID,
+  secretKey: process.env.S3_SECRET_ACCESS_KEY,
+  bucket: process.env.S3_BUCKET
+})
+
+app.post("/upload-to-shelves", async (req, res) => {
+  try {
+    const { files } = req.files
+    const file = files.file
+
+    if (!file) {
+      return res.status(400).json({ error: "No file uploaded" })
+    }
+
+    const key = `uploads/${Date.now()}-${file.name}`
+    const buffer = Buffer.from(await file.arrayBuffer())
+
+    const result = await storage.put(key, buffer, {
+      contentType: file.type
+    })
+
+    res.json({
+      success: true,
+      key,
+      url: result.url,
+      size: result.size
+    })
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+```
+
+### AWS S3 Example
+
 ```typescript
 // AWS S3 Example
 import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";

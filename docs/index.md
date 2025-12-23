@@ -17,7 +17,7 @@ layout: page
     </div>
     <p class="desc">Multi-protocol server framework</p>
     <p class="detail">HTTP, WebSocket, gRPC, TCP, UDP — one unified API for all protocols.</p>
-    <code>bun add verb</code>
+    <code>bun add @verb-js/verb</code>
   </a>
 
   <a href="/hull/" class="package">
@@ -27,7 +27,7 @@ layout: page
     </div>
     <p class="desc">Functional database toolkit</p>
     <p class="detail">Ecto-inspired queries, changesets, and schema management for Bun.sql.</p>
-    <code>bun add hull</code>
+    <code>bun add @verb-js/hull</code>
   </a>
 
   <a href="/allow/" class="package">
@@ -37,7 +37,7 @@ layout: page
     </div>
     <p class="desc">Authentication library</p>
     <p class="detail">Passwords, JWT, OAuth, and API tokens with Verb middleware integration.</p>
-    <code>bun add allow</code>
+    <code>bun add @verb-js/allow</code>
   </a>
 
   <a href="/hoist/" class="package">
@@ -47,7 +47,17 @@ layout: page
     </div>
     <p class="desc">Self-hosted PaaS</p>
     <p class="detail">Deploy apps, manage databases, and storage on your own infrastructure.</p>
-    <code>bun add -g @hoist/cli</code>
+    <code>bun add -g @verb-js/hoist</code>
+  </a>
+
+  <a href="/shelves/" class="package">
+    <div class="package-header">
+      <span class="icon">📦</span>
+      <h2>Shelves</h2>
+    </div>
+    <p class="desc">S3-compatible storage</p>
+    <p class="detail">Lightweight object storage server. Drop-in replacement for S3, MinIO.</p>
+    <code>bun add @verb-js/shelves</code>
   </a>
 </div>
 

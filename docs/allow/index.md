@@ -57,7 +57,7 @@ app.listen(3000)
 ## Installation
 
 ```bash
-bun add allow
+bun add @verb-js/allow
 ```
 
 ## Core Functions

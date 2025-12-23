@@ -4,7 +4,7 @@
 
 - Docker installed and running
 - PostgreSQL database
-- S3-compatible storage (MinIO, AWS S3, etc.)
+- Shelves (S3-compatible storage from Verb ecosystem)
 
 ## Server Setup
 
@@ -25,9 +25,9 @@ Edit `.env`:
 ```bash
 DATABASE_URL=postgres://user:pass@localhost:5432/hoist
 S3_ENDPOINT=http://localhost:9000
-S3_ACCESS_KEY=minioadmin
-S3_SECRET_KEY=minioadmin
-S3_BUCKET=hoist
+S3_ACCESS_KEY=hoistadmin
+S3_SECRET_KEY=hoistadmin
+S3_BUCKET=hoist-storage
 AUTH_SECRET=your-secret-key-here
 ```
 
@@ -46,7 +46,7 @@ bun run dev:proxy  # Proxy on :80
 ## Install CLI
 
 ```bash
-bun add -g @hoist/cli
+bun add -g @verb-js/hoist
 ```
 
 ## Login

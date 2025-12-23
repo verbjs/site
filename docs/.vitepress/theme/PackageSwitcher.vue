@@ -10,6 +10,7 @@ const packages = [
   { name: 'Hull', path: '/hull/', icon: '🗄️', description: 'Database Toolkit' },
   { name: 'Allow', path: '/allow/', icon: '🔐', description: 'Authentication' },
   { name: 'Hoist', path: '/hoist/', icon: '🚀', description: 'PaaS Platform' },
+  { name: 'Shelves', path: '/shelves/', icon: '📦', description: 'Object Storage' },
 ]
 
 const currentPackage = computed(() => {

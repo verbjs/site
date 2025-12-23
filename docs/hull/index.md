@@ -42,7 +42,7 @@ const newUser = await insert(repo, cs)
 ## Installation
 
 ```bash
-bun add hull
+bun add @verb-js/hull
 ```
 
 ## Why Hull?

@@ -32,7 +32,7 @@ app.listen(3000)
 ## Installation
 
 ```bash
-bun add verb
+bun add @verb-js/verb
 ```
 
 ## Protocols

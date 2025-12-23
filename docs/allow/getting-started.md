@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-bun add allow
+bun add @verb-js/allow
 ```
 
 ## Basic Setup

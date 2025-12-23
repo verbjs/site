@@ -5,7 +5,7 @@ The Hoist CLI provides command-line access to all Hoist features.
 ## Installation
 
 ```bash
-bun add -g @hoist/cli
+bun add -g @verb-js/hoist
 ```
 
 ## Authentication

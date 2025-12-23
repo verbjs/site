@@ -388,7 +388,7 @@ Check your `package.json`:
 
 ### How do I migrate from Express?
 
-1. **Install Verb**: `bun add verb`
+1. **Install Verb**: `bun add @verb-js/verb`
 2. **Replace imports**: `import { server } from "verb"`
 3. **Update server creation**: `const app = server.http()`
 4. **Test routes**: Most Express middleware works as-is

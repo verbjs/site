@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-bun add hull
+bun add @verb-js/hull
 ```
 
 ## Database Connection

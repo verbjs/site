@@ -1,6 +1,6 @@
 # Storage
 
-Hoist provides S3-compatible object storage for files and assets.
+Hoist provides Shelves storage (S3-compatible) for files and assets. Shelves is the object storage component of the Verb ecosystem.
 
 ## Create a Bucket
 
@@ -29,13 +29,13 @@ Save these credentials - the secret key won't be shown again.
 Install the Hoist SDK:
 
 ```bash
-bun add @hoist/sdk
+bun add @verb-js/hoist-sdk
 ```
 
 Use in your app:
 
 ```typescript
-import { createStorage } from "@hoist/sdk"
+import { createStorage } from "@verb-js/hoist-sdk"
 
 const storage = createStorage({
   endpoint: process.env.HOIST_STORAGE_ENDPOINT,

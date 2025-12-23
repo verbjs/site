@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'Hull', link: '/hull/' },
       { text: 'Allow', link: '/allow/' },
       { text: 'Hoist', link: '/hoist/' },
+      { text: 'Shelves', link: '/shelves/' },
       { text: 'GitHub', link: 'https://github.com/verbjs' }
     ],
 
@@ -75,6 +76,19 @@ export default defineConfig({
             { text: 'Deployments', link: '/hoist/deployments' },
             { text: 'Databases', link: '/hoist/databases' },
             { text: 'Storage', link: '/hoist/storage' },
+          ]
+        }
+      ],
+      '/shelves/': [
+        {
+          text: 'Shelves',
+          items: [
+            { text: 'Overview', link: '/shelves/' },
+            { text: 'Getting Started', link: '/shelves/getting-started' },
+            { text: 'Configuration', link: '/shelves/configuration' },
+            { text: 'S3 API', link: '/shelves/api-reference' },
+            { text: 'Admin API', link: '/shelves/admin-api' },
+            { text: 'Authentication', link: '/shelves/authentication' },
           ]
         }
       ],

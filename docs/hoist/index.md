@@ -6,7 +6,7 @@ Hoist is a self-hosted Platform-as-a-Service (PaaS) built with the Verb ecosyste
 
 - **Container Deployments** - Docker-based app deployments
 - **Managed Databases** - Per-app PostgreSQL instances
-- **Object Storage** - S3-compatible file storage
+- **Shelves Storage** - S3-compatible file storage
 - **Static Hosting** - Deploy static sites and SPAs
 - **Custom Domains** - Route traffic with custom domains
 - **Environment Variables** - Secure config management
@@ -22,7 +22,7 @@ Hoist is a self-hosted Platform-as-a-Service (PaaS) built with the Verb ecosyste
                     ┌──────┴──────┐
                     ▼             ▼
               ┌──────────┐  ┌──────────┐
-              │ PostgreSQL│  │    S3    │
+              │ PostgreSQL│  │ Shelves  │
               └──────────┘  └──────────┘
 ```
 
@@ -30,7 +30,7 @@ Hoist is a self-hosted Platform-as-a-Service (PaaS) built with the Verb ecosyste
 
 ```bash
 # Install CLI
-bun add -g @hoist/cli
+bun add -g @verb-js/hoist
 
 # Login to your Hoist server
 hoist login https://hoist.yourserver.com
@@ -43,11 +43,8 @@ hoist deploy ./my-app
 
 | Package | Description |
 |---------|-------------|
-| `@hoist/api` | REST API server |
-| `@hoist/web` | Dashboard UI |
-| `@hoist/cli` | Command-line tool |
-| `@hoist/proxy` | Reverse proxy for routing |
-| `@hoist/sdk` | Client SDK for storage/databases |
+| `@verb-js/hoist` | REST API, Dashboard, CLI |
+| `@verb-js/hoist-sdk` | Client SDK for storage/databases |
 
 ## Built With
 
@@ -55,4 +52,4 @@ hoist deploy ./my-app
 - **Hull** - Database toolkit
 - **Allow** - Authentication
 - **Docker** - Container runtime
-- **S3** - Object storage (MinIO compatible)
+- **Shelves** - S3-compatible object storage
