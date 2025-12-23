@@ -53,7 +53,7 @@ Check that Shelves is running:
 curl http://localhost:9000/
 ```
 
-Access the admin dashboard at http://localhost:9001
+Access the admin dashboard at `http://localhost:9001`
 
 ## Create Your First Bucket
 
