@@ -56,7 +56,7 @@ Query parameters:
 
 ## Admin Dashboard
 
-The web dashboard at http://localhost:9001 provides:
+The web dashboard at `http://localhost:9001` provides:
 
 - Total storage usage
 - Number of objects
