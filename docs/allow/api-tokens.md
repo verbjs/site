@@ -1,6 +1,6 @@
 # API Tokens
 
-API tokens provide long-lived authentication for programmatic access.
+> API tokens provide long-lived authentication for programmatic access.
 
 ## Creating Tokens
 
